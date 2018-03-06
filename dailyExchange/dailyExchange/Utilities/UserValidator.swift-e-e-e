@@ -1,0 +1,13 @@
+//
+//  UserValidator.swift
+//  dailyExchange
+//
+//  Created by thomas minshull on 2018-03-05.
+//  Copyright © 2018 thomas minshull. All rights reserved.
+//
+
+import UIKit
+
+class UserValidator: NSObject {
+
+}
