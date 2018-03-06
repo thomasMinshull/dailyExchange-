@@ -13,6 +13,7 @@
 		55452E51204E0FF600658D6D /* ChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55452E50204E0FF600658D6D /* ChartViewController.swift */; };
 		55452E53204E101700658D6D /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55452E52204E101700658D6D /* SignUpViewController.swift */; };
 		55452E81204E286900658D6D /* Keys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55452E80204E286900658D6D /* Keys.swift */; };
+		55452E83204E4F4700658D6D /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55452E82204E4F4700658D6D /* SignInViewController.swift */; };
 		557691B7204E0A700097CCF7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 557691B6204E0A700097CCF7 /* AppDelegate.swift */; };
 		557691BC204E0A700097CCF7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 557691BA204E0A700097CCF7 /* Main.storyboard */; };
 		557691BE204E0A700097CCF7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 557691BD204E0A700097CCF7 /* Assets.xcassets */; };
@@ -37,6 +38,7 @@
 		55452E50204E0FF600658D6D /* ChartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartViewController.swift; sourceTree = "<group>"; };
 		55452E52204E101700658D6D /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		55452E80204E286900658D6D /* Keys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keys.swift; sourceTree = "<group>"; };
+		55452E82204E4F4700658D6D /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		557691B3204E0A700097CCF7 /* dailyExchange.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = dailyExchange.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		557691B6204E0A700097CCF7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		557691BB204E0A700097CCF7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -81,6 +83,7 @@
 				55452E4E204E0FDD00658D6D /* SettingsViewController.swift */,
 				55452E50204E0FF600658D6D /* ChartViewController.swift */,
 				55452E52204E101700658D6D /* SignUpViewController.swift */,
+				55452E82204E4F4700658D6D /* SignInViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -361,6 +364,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				55452E83204E4F4700658D6D /* SignInViewController.swift in Sources */,
 				557691B7204E0A700097CCF7 /* AppDelegate.swift in Sources */,
 				55452E81204E286900658D6D /* Keys.swift in Sources */,
 				55452E51204E0FF600658D6D /* ChartViewController.swift in Sources */,
