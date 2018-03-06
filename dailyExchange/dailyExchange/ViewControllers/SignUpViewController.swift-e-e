@@ -9,18 +9,35 @@
 import UIKit
 
 class SignUpViewController: UIViewController {
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
+    @IBOutlet var emailTextField: UITextField!
+    @IBOutlet var passwordTextField: UITextField!
     
+    @IBAction func signUpButtonTapped(_ sender: Any) {
+        let validator = UserValidator()
+        
+        let emailResponse = validator.validEmail(emailTextField.text)
+        let passwordResponse = validator.validPassword(passwordTextField.text)
+        
+        if emailResponse.0 && passwordResponse.0 {
+            // sign up
+        } else {
+            // post an alert using the message from the validator ie emailResponse.1
+            var message = "Email or Password is invalid"
+            
+            if let passwordError = passwordResponse.1 {
+                message = passwordError
+            }
+            
+            if let emailError = emailResponse.1 {
+                message = emailError
+            }
+            
+            let alert = UIAlertController(title: message, message: nil, preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            
+            self.present(alert, animated: true, completion: nil)
+        }
+    }
     
     // MARK: - Navigation
 
