@@ -19,9 +19,22 @@ class SignUpViewController: UIViewController {
         let passwordResponse = validator.validPassword(passwordTextField.text)
         
         if emailResponse.0 && passwordResponse.0 {
-            // sign up
+            let user = User()
+            user.username = emailTextField.text!
+            user.password = passwordTextField.text!
+            
+            user.signUpInBackground(block: { (success, error) in
+                if let error = error {
+                    let errorMessage:String = error.localizedDescription
+                    let alert = UIAlertController(title: "Sign up failed", message: errorMessage, preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                    self.present(alert, animated: true, completion: nil)
+                } else {
+                    self.dismiss(animated: true, completion: nil)
+                }
+            })
+            
         } else {
-            // post an alert using the message from the validator ie emailResponse.1
             var message = "Email or Password is invalid"
             
             if let passwordError = passwordResponse.1 {
