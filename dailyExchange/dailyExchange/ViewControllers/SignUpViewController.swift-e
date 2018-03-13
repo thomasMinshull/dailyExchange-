@@ -8,7 +8,8 @@
 
 import UIKit
 
-class SignUpViewController: UIViewController {
+class SignUpViewController: UIViewController
+{
     @IBOutlet var emailTextField: UITextField!
     @IBOutlet var passwordTextField: UITextField!
     
@@ -18,30 +19,37 @@ class SignUpViewController: UIViewController {
         let emailResponse = validator.validateEmail(emailTextField.text)
         let passwordResponse = validator.validatePassword(passwordTextField.text)
         
-        if emailResponse.0 && passwordResponse.0 {
+        if emailResponse.0 && passwordResponse.0
+        {
             let user = User()
             user.username = emailTextField.text!
             user.password = passwordTextField.text!
             
             user.signUpInBackground(block: { (success, error) in
-                if let error = error {
+                if let error = error
+                {
                     let errorMessage:String = error.localizedDescription
                     let alert = UIAlertController(title: "Sign up failed", message: errorMessage, preferredStyle: .alert)
                     alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
                     self.present(alert, animated: true, completion: nil)
-                } else {
-                    self.dismiss(animated: true, completion: nil)
+                } else
+                {
+                    let notificationCenter = NotificationCenter.default
+                    notificationCenter.post(name: Notification.Name.didLogIn, object: nil)
                 }
             })
             
-        } else {
+        } else
+        {
             var message = "Email or Password is invalid"
             
-            if let passwordError = passwordResponse.1 {
+            if let passwordError = passwordResponse.1
+            {
                 message = passwordError
             }
             
-            if let emailError = emailResponse.1 {
+            if let emailError = emailResponse.1
+            {
                 message = emailError
             }
             
