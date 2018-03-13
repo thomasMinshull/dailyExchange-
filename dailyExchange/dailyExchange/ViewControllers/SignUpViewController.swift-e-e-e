@@ -15,8 +15,8 @@ class SignUpViewController: UIViewController {
     @IBAction func signUpButtonTapped(_ sender: Any) {
         let validator = UserValidator()
         
-        let emailResponse = validator.validEmail(emailTextField.text)
-        let passwordResponse = validator.validPassword(passwordTextField.text)
+        let emailResponse = validator.validateEmail(emailTextField.text)
+        let passwordResponse = validator.validatePassword(passwordTextField.text)
         
         if emailResponse.0 && passwordResponse.0 {
             let user = User()

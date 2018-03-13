@@ -15,18 +15,32 @@ class SignInViewController: UIViewController {
     @IBAction func signInButtonTapped(_ sender: Any) {
         let validator = UserValidator()
         
-        let emailResponse = validator.validEmail(emailTextField.text)
-        let passwordResponse = validator.validPassword(passwordTextField.text)
+        let emailResponse = validator.validateEmail(emailTextField.text)
+        let passwordResponse = validator.validatePasswordExists(passwordTextField.text)
         
-        if emailResponse.0 && passwordResponse.0 {
-            // sign up
-        } else {
-            // post an alert using the message from the validator ie emailResponse.1
-            var message = "Email or Password is invalid"
+        if let email = emailTextField.text,
+            let password = passwordTextField.text,
+            emailResponse.0 {
             
-            if let passwordError = passwordResponse.1 {
-                message = passwordError
+            do {
+                try User.logIn(withUsername: email, password: password)
+            } catch {
+                let alert = UIAlertController(title: "Login failed", message: "Please check your network connection and try again", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                self.present(alert, animated: true, completion: nil)
             }
+            
+        } else if let message = passwordResponse.1,
+            !passwordResponse.0 {
+            
+            let alert = UIAlertController(title: message, message: nil, preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            
+            self.present(alert, animated: true, completion: nil)
+            
+        } else {
+            
+            var message = "Email is invalid"
             
             if let emailError = emailResponse.1 {
                 message = emailError

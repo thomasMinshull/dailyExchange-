@@ -10,7 +10,7 @@ import UIKit
 
 class UserValidator: NSObject {
     
-    func validEmail(_ email: String?) -> (Bool, String?) {
+    func validateEmail(_ email: String?) -> (Bool, String?) {
         guard var email = email else {
             return (false, "Email cannot be blank.")
         }
@@ -28,7 +28,21 @@ class UserValidator: NSObject {
         return (true, nil)
     }
     
-    func validPassword(_ password: String?) -> (Bool, String?) {
+    func validatePasswordExists(_ password: String?) -> (Bool, String?) {
+        guard var password = password else {
+            return (false, "Password cannot be blank")
+        }
+        
+        password = password.trimmingCharacters(in: .whitespacesAndNewlines)
+        
+        if password == "" {
+            return (false, "Password cannot be blank")
+        } else {
+            return (true, nil)
+        }
+    }
+    
+    func validatePassword(_ password: String?) -> (Bool, String?) {
         guard var password = password else {
             return (false, "Password cannot be blank")
         }
