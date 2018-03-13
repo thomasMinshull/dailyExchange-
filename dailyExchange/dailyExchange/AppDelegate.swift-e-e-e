@@ -24,6 +24,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         
         Parse.initialize(with: configuration)
+        
+        var initialStoryboard: UIStoryboard
+        
+        if PFUser.current() != nil { // user is logged in
+            initialStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        } else { // user needs to login
+            initialStoryboard = UIStoryboard(name: "Login", bundle: nil)
+        }
+        let window = application.windows[0]
+        window.rootViewController = initialStoryboard.instantiateInitialViewController()
         return true
     }
 
