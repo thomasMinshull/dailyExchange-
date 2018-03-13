@@ -17,7 +17,20 @@
                     <view key="view" contentMode="scaleToFill" id="4tP-Yp-OPJ">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="poo-YM-RjR">
+                                <rect key="frame" x="163" y="544" width="48" height="30"/>
+                                <state key="normal" title="Logout"/>
+                                <connections>
+                                    <action selector="logoutTapped:" destination="UfY-qF-KgV" eventType="touchUpInside" id="eSw-99-AiG"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="poo-YM-RjR" firstAttribute="centerX" secondItem="8Nq-NG-QMz" secondAttribute="centerX" id="Z8k-pM-YEr"/>
+                            <constraint firstItem="8Nq-NG-QMz" firstAttribute="bottom" secondItem="poo-YM-RjR" secondAttribute="bottom" id="c9L-JY-3W0"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="8Nq-NG-QMz"/>
                     </view>
                 </viewController>
