@@ -8,13 +8,17 @@
 
 import UIKit
 
-class MainViewController: UIViewController
+class MainViewController: UIViewController, UITableViewDelegate, UITableViewDataSource
 {
+    @IBOutlet var exchangeRateLabel: UILabel!
+    @IBOutlet var exchangeRateButton: UIButton!
+    @IBOutlet var exchangeRatesTableView: UITableView!
+    
     override func viewDidLoad()
     {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        self.exchangeRatesTableView.dataSource = self
+        self.exchangeRatesTableView.delegate = self
     }
 
     override func didReceiveMemoryWarning()
@@ -23,7 +27,31 @@ class MainViewController: UIViewController
         // Dispose of any resources that can be recreated.
     }
     
-
+    // MARK: - Actions
+    
+    @IBAction func exchangeRateButtonTapped(_ sender: Any)
+    {
+    
+    }
+    
+    @IBAction func saveButtonTapped(_ sender: Any)
+    {
+        
+    }
+    
+    // MARK: - UITableViewDataSource
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
+    {
+        return 1 // temp value
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
+    {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "ExchangeRateTableViewCell", for: indexPath)
+        return cell
+    }
+    
     /*
     // MARK: - Navigation
 

@@ -124,10 +124,16 @@
                                 <rect key="frame" x="94.5" y="132" width="187.5" height="36"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <state key="normal" title="$ / Base"/>
+                                <connections>
+                                    <action selector="exchangeRateButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="QsU-K8-fFR"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="B8P-TV-Ovx">
                                 <rect key="frame" x="172" y="183" width="32" height="30"/>
                                 <state key="normal" title="save"/>
+                                <connections>
+                                    <action selector="saveButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="jH5-rG-hnO"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -149,6 +155,11 @@
                     <tabBarItem key="tabBarItem" title="$" id="Fy4-VD-WMA" userLabel="Main"/>
                     <toolbarItems/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="exchangeRateButton" destination="3f4-uy-2ML" id="LjL-DG-2Bm"/>
+                        <outlet property="exchangeRateLabel" destination="3Ef-cb-bex" id="xyE-wY-fSe"/>
+                        <outlet property="exchangeRatesTableView" destination="C8x-R5-5Q1" id="N7R-Q2-2qH"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
