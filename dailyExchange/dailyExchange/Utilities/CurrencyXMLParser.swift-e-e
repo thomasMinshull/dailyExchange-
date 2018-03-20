@@ -49,13 +49,18 @@ class CurrencyXMLParser: NSObject, XMLParserDelegate {
             return
         }
         
-        id = ""
-        fullName = ""
+        fullName = "" // reset fullName field
         
-        if let rawID = attributeDict["id"],
-            rawID.rangeOfCharacter(from: .decimalDigits) == nil
+        // assign id
+        let rawID = attributeDict["id"]
+        
+        if rawID != nil,
+            rawID!.rangeOfCharacter(from: .decimalDigits) == nil,
+            rawID!.trimmingCharacters(in: .whitespacesAndNewlines).count == 3
         {
-            id = rawID
+            id = rawID!.trimmingCharacters(in: .whitespacesAndNewlines)
+        } else {
+            id = nil
         }
     }
     
@@ -75,8 +80,8 @@ class CurrencyXMLParser: NSObject, XMLParserDelegate {
         {
             return
         }
-        
-        let currency = Currency(fullName: fullName, abriviation: id)
+         
+        let currency = Currency(fullName: fullName.trimmingCharacters(in: .whitespacesAndNewlines), abriviation: id)
         currencyList?.append(currency)
     }
 }
