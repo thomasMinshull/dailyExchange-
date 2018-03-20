@@ -14,11 +14,18 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     @IBOutlet var exchangeRateButton: UIButton!
     @IBOutlet var exchangeRatesTableView: UITableView!
     
+    private let currencyParser = CurrencyXMLParser()
+    
     override func viewDidLoad()
     {
         super.viewDidLoad()
         self.exchangeRatesTableView.dataSource = self
         self.exchangeRatesTableView.delegate = self
+        currencyParser.retreveCurrencyList(from: Currency.filePathForCurrencySchema()) {
+            (currencyList) in
+            print(currencyList)
+        }
+        
     }
 
     override func didReceiveMemoryWarning()

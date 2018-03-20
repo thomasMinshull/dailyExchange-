@@ -18,14 +18,17 @@
 		55452E89204F468F00658D6D /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55452E88204F468F00658D6D /* User.swift */; };
 		556D4FD62058E55A005307BC /* ExchangeRateTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 556D4FD52058E55A005307BC /* ExchangeRateTableViewCell.swift */; };
 		556D4FD8205A3C7F005307BC /* NetworkingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 556D4FD7205A3C7F005307BC /* NetworkingManager.swift */; };
-		556D4FDA206061F4005307BC /* Currencies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 556D4FD9206061F4005307BC /* Currencies.swift */; };
+		556D4FDA206061F4005307BC /* Currency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 556D4FD9206061F4005307BC /* Currency.swift */; };
 		557691B7204E0A700097CCF7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 557691B6204E0A700097CCF7 /* AppDelegate.swift */; };
 		557691BC204E0A700097CCF7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 557691BA204E0A700097CCF7 /* Main.storyboard */; };
 		557691BE204E0A700097CCF7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 557691BD204E0A700097CCF7 /* Assets.xcassets */; };
 		557691C1204E0A700097CCF7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 557691BF204E0A700097CCF7 /* LaunchScreen.storyboard */; };
 		557691CC204E0A700097CCF7 /* dailyExchangeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 557691CB204E0A700097CCF7 /* dailyExchangeTests.swift */; };
+		55B8B8E1206078D600430CE9 /* currencySchema.xml in Resources */ = {isa = PBXBuildFile; fileRef = 55B8B8E0206078D600430CE9 /* currencySchema.xml */; };
+		55B8B8E32060DBAD00430CE9 /* CurrencyXMLParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55B8B8E22060DBAD00430CE9 /* CurrencyXMLParser.swift */; };
 		55C065AF2057A88D009ABAF4 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 55C065AE2057A88D009ABAF4 /* Login.storyboard */; };
 		55C065B120587F7F009ABAF4 /* Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55C065B020587F7F009ABAF4 /* Notifications.swift */; };
+		55CC22482060FB260025884B /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 557691C2204E0A700097CCF7 /* Info.plist */; };
 		8A9B21675D6D0E6362AEC620 /* Pods_dailyExchangeTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83B31008FD3752651DC709BA /* Pods_dailyExchangeTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -50,7 +53,7 @@
 		55452E88204F468F00658D6D /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		556D4FD52058E55A005307BC /* ExchangeRateTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeRateTableViewCell.swift; sourceTree = "<group>"; };
 		556D4FD7205A3C7F005307BC /* NetworkingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingManager.swift; sourceTree = "<group>"; };
-		556D4FD9206061F4005307BC /* Currencies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Currencies.swift; sourceTree = "<group>"; };
+		556D4FD9206061F4005307BC /* Currency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Currency.swift; sourceTree = "<group>"; };
 		557691B3204E0A700097CCF7 /* dailyExchange.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = dailyExchange.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		557691B6204E0A700097CCF7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		557691BB204E0A700097CCF7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -60,6 +63,8 @@
 		557691C7204E0A700097CCF7 /* dailyExchangeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = dailyExchangeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		557691CB204E0A700097CCF7 /* dailyExchangeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = dailyExchangeTests.swift; sourceTree = "<group>"; };
 		557691CD204E0A700097CCF7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		55B8B8E0206078D600430CE9 /* currencySchema.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = currencySchema.xml; sourceTree = "<group>"; };
+		55B8B8E22060DBAD00430CE9 /* CurrencyXMLParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyXMLParser.swift; sourceTree = "<group>"; };
 		55C065AE2057A88D009ABAF4 /* Login.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
 		55C065B020587F7F009ABAF4 /* Notifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notifications.swift; sourceTree = "<group>"; };
 		56F94973C6F49D846316749B /* Pods_dailyExchange.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_dailyExchange.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -108,7 +113,7 @@
 				55452E88204F468F00658D6D /* User.swift */,
 				55C065B020587F7F009ABAF4 /* Notifications.swift */,
 				556D4FD7205A3C7F005307BC /* NetworkingManager.swift */,
-				556D4FD9206061F4005307BC /* Currencies.swift */,
+				556D4FD9206061F4005307BC /* Currency.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -117,6 +122,7 @@
 			isa = PBXGroup;
 			children = (
 				55452E86204E61FD00658D6D /* UserValidator.swift */,
+				55B8B8E22060DBAD00430CE9 /* CurrencyXMLParser.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -134,6 +140,7 @@
 			isa = PBXGroup;
 			children = (
 				557691B5204E0A700097CCF7 /* dailyExchange */,
+				557691C2204E0A700097CCF7 /* Info.plist */,
 				557691CA204E0A700097CCF7 /* dailyExchangeTests */,
 				557691B4204E0A700097CCF7 /* Products */,
 				AEAD2D2C9644A19CF70632D9 /* Pods */,
@@ -187,7 +194,7 @@
 			isa = PBXGroup;
 			children = (
 				557691BD204E0A700097CCF7 /* Assets.xcassets */,
-				557691C2204E0A700097CCF7 /* Info.plist */,
+				55B8B8E0206078D600430CE9 /* currencySchema.xml */,
 			);
 			path = Assets;
 			sourceTree = "<group>";
@@ -303,6 +310,8 @@
 			files = (
 				55C065AF2057A88D009ABAF4 /* Login.storyboard in Resources */,
 				557691C1204E0A700097CCF7 /* LaunchScreen.storyboard in Resources */,
+				55CC22482060FB260025884B /* Info.plist in Resources */,
+				55B8B8E1206078D600430CE9 /* currencySchema.xml in Resources */,
 				557691BE204E0A700097CCF7 /* Assets.xcassets in Resources */,
 				557691BC204E0A700097CCF7 /* Main.storyboard in Resources */,
 			);
@@ -426,6 +435,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				55B8B8E32060DBAD00430CE9 /* CurrencyXMLParser.swift in Sources */,
 				556D4FD62058E55A005307BC /* ExchangeRateTableViewCell.swift in Sources */,
 				55C065B120587F7F009ABAF4 /* Notifications.swift in Sources */,
 				55452E83204E4F4700658D6D /* SignInViewController.swift in Sources */,
@@ -434,7 +444,7 @@
 				55452E87204E61FD00658D6D /* UserValidator.swift in Sources */,
 				55452E51204E0FF600658D6D /* ChartViewController.swift in Sources */,
 				55452E89204F468F00658D6D /* User.swift in Sources */,
-				556D4FDA206061F4005307BC /* Currencies.swift in Sources */,
+				556D4FDA206061F4005307BC /* Currency.swift in Sources */,
 				55452E4D204E0FCB00658D6D /* MainViewController.swift in Sources */,
 				556D4FD8205A3C7F005307BC /* NetworkingManager.swift in Sources */,
 				55452E4F204E0FDD00658D6D /* SettingsViewController.swift in Sources */,
@@ -594,7 +604,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = FHZ72ELYQ2;
-				INFOPLIST_FILE = dailyExchange/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.tomm.dailyExchange;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -610,7 +620,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = FHZ72ELYQ2;
-				INFOPLIST_FILE = dailyExchange/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.tomm.dailyExchange;
 				PRODUCT_NAME = "$(TARGET_NAME)";
