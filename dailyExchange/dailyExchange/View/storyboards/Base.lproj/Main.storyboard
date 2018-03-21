@@ -182,10 +182,10 @@
             </objects>
             <point key="canvasLocation" x="558" y="864"/>
         </scene>
-        <!--Tab Bar Controller-->
+        <!--Top Level Table View Controller-->
         <scene sceneID="u2m-b8-Ldt">
             <objects>
-                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="mvo-BZ-JBE" sceneMemberID="viewController">
+                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="mvo-BZ-JBE" customClass="TopLevelTableViewController" customModule="dailyExchange" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="u4T-Ie-WNI">
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
