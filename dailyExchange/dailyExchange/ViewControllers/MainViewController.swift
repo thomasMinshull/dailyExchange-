@@ -38,7 +38,9 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     @IBAction func exchangeRateButtonTapped(_ sender: Any)
     {
-        // Display actionsheet that allows user to pic numerator and denominator 
+        // Display actionsheet that allows user to pic numerator and denominator
+        
+        
     }
     
     @IBAction func saveButtonTapped(_ sender: Any)

@@ -17,6 +17,9 @@
 		55452E87204E61FD00658D6D /* UserValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55452E86204E61FD00658D6D /* UserValidator.swift */; };
 		55452E89204F468F00658D6D /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55452E88204F468F00658D6D /* User.swift */; };
 		554C7D8C2061FB980087ECAB /* currencySchema.xml in Resources */ = {isa = PBXBuildFile; fileRef = 55B8B8E0206078D600430CE9 /* currencySchema.xml */; };
+		554C7D8E206309CC0087ECAB /* CurrencyPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 554C7D8D206309CC0087ECAB /* CurrencyPickerViewController.swift */; };
+		554C7D9120630D300087ECAB /* CurrencyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 554C7D8F20630D300087ECAB /* CurrencyTableViewCell.swift */; };
+		554C7D9220630D300087ECAB /* CurrencyTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 554C7D9020630D300087ECAB /* CurrencyTableViewCell.xib */; };
 		556D4FD62058E55A005307BC /* ExchangeRateTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 556D4FD52058E55A005307BC /* ExchangeRateTableViewCell.swift */; };
 		556D4FD8205A3C7F005307BC /* NetworkingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 556D4FD7205A3C7F005307BC /* NetworkingManager.swift */; };
 		556D4FDA206061F4005307BC /* Currency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 556D4FD9206061F4005307BC /* Currency.swift */; };
@@ -53,6 +56,9 @@
 		55452E82204E4F4700658D6D /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		55452E86204E61FD00658D6D /* UserValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserValidator.swift; sourceTree = "<group>"; };
 		55452E88204F468F00658D6D /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		554C7D8D206309CC0087ECAB /* CurrencyPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyPickerViewController.swift; sourceTree = "<group>"; };
+		554C7D8F20630D300087ECAB /* CurrencyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyTableViewCell.swift; sourceTree = "<group>"; };
+		554C7D9020630D300087ECAB /* CurrencyTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CurrencyTableViewCell.xib; sourceTree = "<group>"; };
 		556D4FD52058E55A005307BC /* ExchangeRateTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeRateTableViewCell.swift; sourceTree = "<group>"; };
 		556D4FD7205A3C7F005307BC /* NetworkingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingManager.swift; sourceTree = "<group>"; };
 		556D4FD9206061F4005307BC /* Currency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Currency.swift; sourceTree = "<group>"; };
@@ -102,6 +108,7 @@
 			isa = PBXGroup;
 			children = (
 				55452E4C204E0FCB00658D6D /* MainViewController.swift */,
+				554C7D8D206309CC0087ECAB /* CurrencyPickerViewController.swift */,
 				55452E4E204E0FDD00658D6D /* SettingsViewController.swift */,
 				55452E50204E0FF600658D6D /* ChartViewController.swift */,
 				55452E52204E101700658D6D /* SignUpViewController.swift */,
@@ -136,6 +143,8 @@
 				55D80B2F20607220005D086A /* storyboards */,
 				556D4FD52058E55A005307BC /* ExchangeRateTableViewCell.swift */,
 				55CC22492061E5040025884B /* TopLevelTableViewController.swift */,
+				554C7D8F20630D300087ECAB /* CurrencyTableViewCell.swift */,
+				554C7D9020630D300087ECAB /* CurrencyTableViewCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -312,6 +321,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				554C7D9220630D300087ECAB /* CurrencyTableViewCell.xib in Resources */,
 				55C065AF2057A88D009ABAF4 /* Login.storyboard in Resources */,
 				557691C1204E0A700097CCF7 /* LaunchScreen.storyboard in Resources */,
 				55CC22482060FB260025884B /* Info.plist in Resources */,
@@ -449,7 +459,9 @@
 				55452E87204E61FD00658D6D /* UserValidator.swift in Sources */,
 				55CC224A2061E5040025884B /* TopLevelTableViewController.swift in Sources */,
 				55452E51204E0FF600658D6D /* ChartViewController.swift in Sources */,
+				554C7D8E206309CC0087ECAB /* CurrencyPickerViewController.swift in Sources */,
 				55452E89204F468F00658D6D /* User.swift in Sources */,
+				554C7D9120630D300087ECAB /* CurrencyTableViewCell.swift in Sources */,
 				556D4FDA206061F4005307BC /* Currency.swift in Sources */,
 				55452E4D204E0FCB00658D6D /* MainViewController.swift in Sources */,
 				556D4FD8205A3C7F005307BC /* NetworkingManager.swift in Sources */,
