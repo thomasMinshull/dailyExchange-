@@ -16,6 +16,7 @@
 		55452E83204E4F4700658D6D /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55452E82204E4F4700658D6D /* SignInViewController.swift */; };
 		55452E87204E61FD00658D6D /* UserValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55452E86204E61FD00658D6D /* UserValidator.swift */; };
 		55452E89204F468F00658D6D /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55452E88204F468F00658D6D /* User.swift */; };
+		554C7D8C2061FB980087ECAB /* currencySchema.xml in Resources */ = {isa = PBXBuildFile; fileRef = 55B8B8E0206078D600430CE9 /* currencySchema.xml */; };
 		556D4FD62058E55A005307BC /* ExchangeRateTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 556D4FD52058E55A005307BC /* ExchangeRateTableViewCell.swift */; };
 		556D4FD8205A3C7F005307BC /* NetworkingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 556D4FD7205A3C7F005307BC /* NetworkingManager.swift */; };
 		556D4FDA206061F4005307BC /* Currency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 556D4FD9206061F4005307BC /* Currency.swift */; };
@@ -324,6 +325,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				554C7D8C2061FB980087ECAB /* currencySchema.xml in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

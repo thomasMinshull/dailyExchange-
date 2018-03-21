@@ -15,6 +15,12 @@ struct Currency {
     let fullName: String
     let abriviation: String
     
+    static func filePathForCachedSchema() -> URL? {
+        let documentsDirectory = FileManager.default.urls(for: .documentDirectory,
+                                                          in: .userDomainMask).last
+        return documentsDirectory?.appendingPathComponent(cachedCurrencySchemeFileName)
+    }
+    
     static func filePathForCurrencySchema() -> URL {
         let documentsDirectory = FileManager.default.urls(for: .documentDirectory,
                                                           in: .userDomainMask).last

@@ -15,6 +15,7 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     @IBOutlet var exchangeRatesTableView: UITableView!
     
     private let currencyParser = CurrencyXMLParser()
+    private let networkManager = NetworkManager()
     
     override func viewDidLoad()
     {
@@ -24,6 +25,13 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         currencyParser.retreveCurrencyList(from: Currency.filePathForCurrencySchema()) {
             (currencyList) in
             print(currencyList)
+        }
+        networkManager.updateCurrencySchema() {
+            self.currencyParser.retreveCurrencyList(from: Currency.filePathForCachedSchema()!) {
+                (currencyList) in
+                print("break\n\n\n")
+                print(currencyList)
+            }
         }
         
     }
