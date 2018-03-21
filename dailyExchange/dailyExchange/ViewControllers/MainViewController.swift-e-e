@@ -26,14 +26,6 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
             (currencyList) in
             print(currencyList)
         }
-        networkManager.updateCurrencySchema() {
-            self.currencyParser.retreveCurrencyList(from: Currency.filePathForCachedSchema()!) {
-                (currencyList) in
-                print("break\n\n\n")
-                print(currencyList)
-            }
-        }
-        
     }
 
     override func didReceiveMemoryWarning()
