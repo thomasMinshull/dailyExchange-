@@ -53,8 +53,6 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         let mainStoryboard = UIStoryboard.init(name: "Main", bundle: nil)
         let currencyPicker = mainStoryboard.instantiateViewController(withIdentifier: "CurrencyPickerViewController") as! CurrencyPickerViewController
         
-        self.tabBarController?.definesPresentationContext = true
-        currencyPicker.modalTransitionStyle = .crossDissolve
         currencyPicker.modalPresentationStyle = .overCurrentContext
         currencyPicker.currencyList = currencyList
         
