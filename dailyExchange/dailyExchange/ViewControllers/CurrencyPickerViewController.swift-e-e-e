@@ -38,10 +38,16 @@ class CurrencyPickerViewController: UIViewController, UITableViewDelegate, UITab
         if let denominatorIndexPath = denominatorTableView.indexPathForSelectedRow,
             let numeratorIndexPath = numeratorTableView.indexPathForSelectedRow
         {
-            let denominatoryCurrency = currencyList[denominatorIndexPath.row]
-            let numeratorCurrency = currencyList[numeratorIndexPath.row]
+            let keys = NotificationKeys.DidSelectCurrencies()
+        
+            let currencyDictionary = [
+                keys.denominatorCurrencyKey: currencyList[denominatorIndexPath.row],
+                keys.numeratorCurrencyKey: currencyList[numeratorIndexPath.row]
+            ]
             
-            //TODO: - post notification updateing selected currency
+            NotificationCenter.default.post(name: .didSelectCurrencies,
+                                            object: nil,
+                                            userInfo: currencyDictionary)
             
         } else {
             let alert = UIAlertController(title: "Select 2 currencies to compair",

@@ -8,8 +8,16 @@
 
 import Foundation
 
+struct NotificationKeys {
+    struct DidSelectCurrencies {
+        let denominatorCurrencyKey = "denominatorCurrency"
+        let numeratorCurrencyKey = "numeratorCurrency"
+    }
+}
+
 extension Notification.Name
 {
     static let didLogIn = Notification.Name(rawValue: "didLogInNotification")
     static let didLogout = Notification.Name(rawValue: "didLogoutNotification")
+    static let didSelectCurrencies = Notification.Name(rawValue: "didSelectCurrenciesNotification")
 }

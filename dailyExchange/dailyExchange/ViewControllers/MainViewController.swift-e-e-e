@@ -26,6 +26,15 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
             (currencyList) in
             print(currencyList)
         }
+        
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(self.reloadForCurrencies(_:)),
+                                               name: .didSelectCurrencies,
+                                               object: nil)
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self, name: .didSelectCurrencies, object: nil)
     }
 
     override func didReceiveMemoryWarning()
@@ -40,12 +49,18 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     {
         // Display actionsheet that allows user to pic numerator and denominator
         
-        
+        //TODO: - present currencyPickerVC
     }
     
     @IBAction func saveButtonTapped(_ sender: Any)
     {
         // add current Exchange Model to datasource and reload tableView
+    }
+    
+    // MARK: - Notification Methods
+    
+    @objc func reloadForCurrencies(_ notification: NSNotification) {
+        
     }
     
     // MARK: - UITableViewDataSource
@@ -60,15 +75,5 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         let cell = tableView.dequeueReusableCell(withIdentifier: "ExchangeRateTableViewCell", for: indexPath)
         return cell
     }
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
