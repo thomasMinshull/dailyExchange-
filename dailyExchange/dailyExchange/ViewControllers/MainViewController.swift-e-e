@@ -14,6 +14,7 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     @IBOutlet var exchangeRateButton: UIButton!
     @IBOutlet var exchangeRatesTableView: UITableView!
     
+    private var currencyList: [Currency]?
     private let currencyParser = CurrencyXMLParser()
     private let networkManager = NetworkManager()
     
@@ -24,6 +25,7 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         self.exchangeRatesTableView.delegate = self
         currencyParser.retreveCurrencyList(from: Currency.filePathForCurrencySchema()) {
             (currencyList) in
+            self.currencyList = currencyList
             print(currencyList)
         }
         
@@ -48,6 +50,16 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     @IBAction func exchangeRateButtonTapped(_ sender: Any)
     {
         // Display actionsheet that allows user to pic numerator and denominator
+        let mainStoryboard = UIStoryboard.init(name: "Main", bundle: nil)
+        let currencyPicker = mainStoryboard.instantiateViewController(withIdentifier: "CurrencyPickerViewController") as! CurrencyPickerViewController
+        
+        self.tabBarController?.definesPresentationContext = true
+        currencyPicker.modalTransitionStyle = .crossDissolve
+        currencyPicker.modalPresentationStyle = .overCurrentContext
+        currencyPicker.currencyList = currencyList
+        
+        present(currencyPicker, animated: true, completion: nil)
+        
         
         //TODO: - present currencyPickerVC
     }

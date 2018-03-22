@@ -136,7 +136,7 @@
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.83741801979999997" green="0.83743780850000005" blue="0.83742713930000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="B8P-TV-Ovx" firstAttribute="top" secondItem="3f4-uy-2ML" secondAttribute="bottom" constant="15" id="80R-X8-ARj"/>
                             <constraint firstItem="3Ef-cb-bex" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" multiplier="1:3" id="BVd-II-GTb"/>
@@ -168,7 +168,7 @@
         <!--Currency Picker View Controller-->
         <scene sceneID="Gj5-le-lvP">
             <objects>
-                <viewController id="6Zl-IC-zd3" customClass="CurrencyPickerViewController" customModule="dailyExchange" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CurrencyPickerViewController" id="6Zl-IC-zd3" customClass="CurrencyPickerViewController" customModule="dailyExchange" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="X1P-S8-M7p">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
