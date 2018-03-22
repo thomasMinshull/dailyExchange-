@@ -57,9 +57,6 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         currencyPicker.currencyList = currencyList
         
         present(currencyPicker, animated: true, completion: nil)
-        
-        
-        //TODO: - present currencyPickerVC
     }
     
     @IBAction func saveButtonTapped(_ sender: Any)

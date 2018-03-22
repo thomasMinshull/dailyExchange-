@@ -49,6 +49,8 @@ class CurrencyPickerViewController: UIViewController, UITableViewDelegate, UITab
                                             object: nil,
                                             userInfo: currencyDictionary)
             
+            dismiss(animated: true, completion: nil)
+            
         } else {
             let alert = UIAlertController(title: "Select 2 currencies to compair",
                                           message: nil,
@@ -64,7 +66,7 @@ class CurrencyPickerViewController: UIViewController, UITableViewDelegate, UITab
     }
     
     @IBAction func cancelTapped(_ sender: Any) {
-        
+        dismiss(animated: true, completion: nil)
     }
     
     // MARK: - tableViewDataSource methods
