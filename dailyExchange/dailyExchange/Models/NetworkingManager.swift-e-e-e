@@ -39,7 +39,7 @@ struct ECBURLGenerator {
     
     static func ecburlCompairing(last nOccurances: Int?, of currency: Currency, to baseCurrency: Currency, over timePeriod: URLTimeKey) -> String {
         
-        var urlString =  "\(baseURL)\(Resource.data)\(exr)\(timePeriod.rawValue).\(currency.abriviation).\(baseCurrency.abriviation).\(sp00).A"
+        var urlString =  "\(baseURL)\(Resource.data)/\(exr)\(timePeriod.rawValue).\(currency.abriviation).\(baseCurrency.abriviation).\(sp00).A"
         
         if let n = nOccurances {
             urlString = urlString + "?" + lastNParameter + "\(n)"
@@ -56,14 +56,20 @@ class NetworkManager {
         let url = URL(fileURLWithPath: urlString)
         
         // https://sdw-wsrest.ecb.europa.eu/service/data/EXR/M.USD.EUR.SP00.A
-        let task = URLSession.shared.dataTask(with: url) {(data, response, error) in
+        let downloadTask = URLSession.shared.downloadTask(with: url) { (data, response, error) in
+            /*
+             NOTE: the following error will be passed if the user requests two currencies for which there is not an exchange rate for. (unfortuantly, not all exchange rates are represented in the api
+             
+             Error Domain=NSURLErrorDomain Code=-1100 "The requested URL was not found on this server." UserInfo={NSUnderlyingError=0x6000004484c0 {Error Domain=kCFErrorDomainCFNetwork Code=-1100 "(null)"}, NSErrorFailingURLStringKey=file:///https:/sdw-wsrest.ecb.europa.eu/service/data/EXR/D.AED.ANG.SP00.A%3FlastNObservations=1, NSErrorFailingURLKey=file:///https:/sdw-wsrest.ecb.europa.eu/service/data/EXR/D.AED.ANG.SP00.A%3FlastNObservations=1, NSLocalizedDescription=The requested URL was not found on this server.
+            */
+            
             print("data: \(data); response: \(response); error: \(error)")
             
             
             completion("temp string")
         }
         
-        task.resume()
+        downloadTask.resume()
     }
  
 }

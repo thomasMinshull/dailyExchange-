@@ -17,6 +17,8 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     private var currencyList: [Currency]?
     private let currencyParser = CurrencyXMLParser()
     private let networkManager = NetworkManager()
+    private var numeratorCurrency: Currency?
+    private var baseCurrency: Currency?
     
     override func viewDidLoad()
     {
@@ -38,13 +40,6 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     deinit {
         NotificationCenter.default.removeObserver(self, name: .didSelectCurrencies, object: nil)
     }
-
-    override func didReceiveMemoryWarning()
-    {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
     // MARK: - Actions
     
     @IBAction func exchangeRateButtonTapped(_ sender: Any)
@@ -67,6 +62,18 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     // MARK: - Notification Methods
     
     @objc func reloadForCurrencies(_ notification: NSNotification) {
+        let keys = NotificationKeys.DidSelectCurrencies()
+        if let numeratorCurrency = notification.userInfo?[keys.numeratorCurrencyKey] as? Currency,
+            let baseCurrency = notification.userInfo?[keys.denominatorCurrencyKey] as? Currency
+        {
+            
+            networkManager.exchangeRateforCurrency(numeratorCurrency, with: baseCurrency) { exchangeRate in
+                self.exchangeRateLabel.text = exchangeRate
+            }
+            
+            exchangeRateButton.setTitle("\(numeratorCurrency.abriviation)/\(baseCurrency.abriviation)",
+                for: .normal)
+        }
         
     }
     
