@@ -11,6 +11,7 @@ import Foundation
 class CurrencyXMLParser: NSObject {
     private var parser: XMLParser?
     private var currencyListParserDelegate: CurrencyListParserDelegate?
+    private var currencyValueParserDelegate: latestExchangeRateParserDelegate?
     
     func retreveCurrencyList(from file: URL,
                              completion: @escaping ([Currency]) -> () )
@@ -22,8 +23,11 @@ class CurrencyXMLParser: NSObject {
         parser?.parse()
     }
     
-    func retreveCurrencyValue(from data: NSData, completion: @escaping (String) -> ()) {
-        
+    func retreveCurrencyValue(from data: Data, completion: @escaping (String) -> ()) {
+        parser = XMLParser(data: data)
+        currencyValueParserDelegate = latestExchangeRateParserDelegate(with: completion)
+        parser?.delegate = currencyListParserDelegate
+        parser?.parse()
     }
 }
 
@@ -97,4 +101,35 @@ class CurrencyListParserDelegate: NSObject, XMLParserDelegate {
         currencyList?.append(currency)
     }
 }
+
+class latestExchangeRateParserDelegate: NSObject, XMLParserDelegate {
+    private let currencyValueElementName = "generic:ObsValue"
+    private var currencyValue: String?
+    private let completionHandler: ((String) -> ())
+    
+    init(with completionHandler: @escaping (String) -> ()) {
+        self.completionHandler = completionHandler
+        super.init()
+    }
+    
+    public func parserDidStartDocument(_ parser: XMLParser)
+    {
+       currencyValue = nil
+    }
+    
+    public func parserDidEndDocument(_ parser: XMLParser)
+    {
+        completionHandler(currencyValue ?? "")
+    }
+    
+    public func parser(_ parser: XMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String] = [:])
+    {
+        guard elementName == currencyValueElementName,
+            let currencyValue = attributeDict["value"] else {
+                return
+        }
+        self.currencyValue = currencyValue
+    }
+}
+
 
