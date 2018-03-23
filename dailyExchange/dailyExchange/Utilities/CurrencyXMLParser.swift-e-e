@@ -8,24 +8,39 @@
 
 import Foundation
 
-class CurrencyXMLParser: NSObject, XMLParserDelegate {
-    private let currencyElementName = "str:Code"
-    private let fullNameElementName = "com:Name"
-    
-    private var currencyList: [Currency]?
-    private var completionBlock: (([Currency]) -> ())?
-    private var currentTagName: String?
-    private var id: String?
-    private var fullName: String?
+class CurrencyXMLParser: NSObject {
     private var parser: XMLParser?
+    private var currencyListParserDelegate: CurrencyListParserDelegate?
     
     func retreveCurrencyList(from file: URL,
                              completion: @escaping ([Currency]) -> () )
     {
-        completionBlock = completion
+        //completionBlock = completion
         parser = XMLParser(contentsOf: file)
-        parser?.delegate = self
+        currencyListParserDelegate = CurrencyListParserDelegate(with: completion)
+        parser?.delegate = currencyListParserDelegate
         parser?.parse()
+    }
+    
+    func retreveCurrencyValue(from data: NSData, completion: @escaping (String) -> ()) {
+        
+    }
+}
+
+class CurrencyListParserDelegate: NSObject, XMLParserDelegate {
+    private let currencyElementName = "str:Code"
+    private let fullNameElementName = "com:Name"
+    
+    private var currentTagName: String?
+    private var fullName: String?
+    private var id: String?
+    
+    private let completionHandler: (([Currency]) -> ())
+    private var currencyList: [Currency]?
+    
+    init(with completionHandler: @escaping ([Currency]) -> ()) {
+        self.completionHandler = completionHandler
+        super.init()
     }
     
     public func parserDidStartDocument(_ parser: XMLParser)
@@ -35,10 +50,7 @@ class CurrencyXMLParser: NSObject, XMLParserDelegate {
     
     public func parserDidEndDocument(_ parser: XMLParser)
     {
-        guard let currencyList = currencyList else {
-            fatalError("A fatal Error Occurred")
-        }
-        completionBlock!(currencyList)
+        completionHandler(currencyList ?? [Currency]())
     }
     
     public func parser(_ parser: XMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String] = [:])
@@ -80,8 +92,9 @@ class CurrencyXMLParser: NSObject, XMLParserDelegate {
         {
             return
         }
-         
+        
         let currency = Currency(fullName: fullName.trimmingCharacters(in: .whitespacesAndNewlines), abriviation: id)
         currencyList?.append(currency)
     }
 }
+
