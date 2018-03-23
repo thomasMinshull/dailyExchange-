@@ -7,29 +7,64 @@
 //
 
 import Foundation
-// https://sdw-wsrest.ecb.europa.eu/service/data/EXR/M.USD.EUR.SP00.A // gets the exchange rate for USD/EUR Monthly
 
 /*
  API
- 
- // returns (DSD) Data Structure Definition for codelists for ECB (aka the currency ids)
- https://sdw-wsrest.ecb.europa.eu/service/datastructure/ECB/ECB_EXR1/1.0?references=children // Not Working
- 
+ https://sdw-wsrest.ecb.europa.eu/service/data/EXR/D.USD.EUR.SP00.A?lastNObservations=1 // Most recent exchange rate USD/EUR up to the minute averaged per minute
  https://sdw-wsrest.ecb.europa.eu/service/datastructure/ECB/ // DBD for Creating the URL's for fetching data 
  //
  */
 
-class NetworkManager{
-    enum Resource: String {
+struct ECBURLGenerator {
+    static private let baseURL = "https://sdw-wsrest.ecb.europa.eu/service/"
+    static private let lastNParameter = "lastNObservations="
+    static private let exr = "EXR/"
+    static private let sp00 = "SP00"
+    
+    private enum Resource: String {
         case data = "data/"
         case schema = "schema/"
         case codelist = "codelist/"
         case datastructure = "datastructure/"
     }
     
-    private let base = "https://sdw-wsrest.ecb.europa.eu/service/"
+    enum URLTimeKey: String {
+        case minute = "N"
+        case daily = "D"
+        case monthly = "M"
+        case quarterly = "Q"
+        case halfYear = "H"
+        case annually = "A"
+    }
     
-    
+    static func ecburlCompairing(last nOccurances: Int?, of currency: Currency, to baseCurrency: Currency, over timePeriod: URLTimeKey) -> String {
+        
+        var urlString =  "\(baseURL)\(Resource.data)\(exr)\(timePeriod.rawValue).\(currency.abriviation).\(baseCurrency.abriviation).\(sp00).A"
+        
+        if let n = nOccurances {
+            urlString = urlString + "?" + lastNParameter + "\(n)"
+        }
+        
+        return urlString
+    }
+}
+
+class NetworkManager {
+    func exchangeRateforCurrency(_ currency: Currency, with base: Currency, completion: @escaping (String) -> ()) {
+//        let urlString = "https://sdw-wsrest.ecb.europa.eu/service/data/EXR/D.USD.EUR.SP00.A?lastNObservations=1"
+         let urlString = ECBURLGenerator.ecburlCompairing(last: 1, of: currency, to: base, over: .daily)
+        let url = URL(fileURLWithPath: urlString)
+        
+        // https://sdw-wsrest.ecb.europa.eu/service/data/EXR/M.USD.EUR.SP00.A
+        let task = URLSession.shared.dataTask(with: url) {(data, response, error) in
+            print("data: \(data); response: \(response); error: \(error)")
+            
+            
+            completion("temp string")
+        }
+        
+        task.resume()
+    }
  
 }
 
