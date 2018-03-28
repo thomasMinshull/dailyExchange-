@@ -66,9 +66,10 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         if let numeratorCurrency = notification.userInfo?[keys.numeratorCurrencyKey] as? Currency,
             let baseCurrency = notification.userInfo?[keys.denominatorCurrencyKey] as? Currency
         {
-            
             networkManager.exchangeRateforCurrency(numeratorCurrency, with: baseCurrency) { exchangeRate in
-                self.exchangeRateLabel.text = exchangeRate
+                DispatchQueue.main.async {
+                    self.exchangeRateLabel.text = exchangeRate
+                }
             }
             
             exchangeRateButton.setTitle("\(numeratorCurrency.abriviation)/\(baseCurrency.abriviation)",

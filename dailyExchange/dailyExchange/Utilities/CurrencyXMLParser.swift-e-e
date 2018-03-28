@@ -16,7 +16,6 @@ class CurrencyXMLParser: NSObject {
     func retreveCurrencyList(from file: URL,
                              completion: @escaping ([Currency]) -> () )
     {
-        //completionBlock = completion
         parser = XMLParser(contentsOf: file)
         currencyListParserDelegate = CurrencyListParserDelegate(with: completion)
         parser?.delegate = currencyListParserDelegate
@@ -26,7 +25,7 @@ class CurrencyXMLParser: NSObject {
     func retreveCurrencyValue(from data: Data, completion: @escaping (String) -> ()) {
         parser = XMLParser(data: data)
         currencyValueParserDelegate = latestExchangeRateParserDelegate(with: completion)
-        parser?.delegate = currencyListParserDelegate
+        parser?.delegate = currencyValueParserDelegate
         parser?.parse()
     }
 }

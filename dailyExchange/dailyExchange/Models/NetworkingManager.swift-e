@@ -50,14 +50,25 @@ struct ECBURLGenerator {
 }
 
 class NetworkManager {
+    var xmlParser: CurrencyXMLParser?
+    
     func exchangeRateforCurrency(_ currency: Currency, with base: Currency, completion: @escaping (String) -> ()) {
         let urlString = ECBURLGenerator.ecburlCompairing(last: 1, of: currency, to: base, over: .daily)
         let url = URL(string: urlString)!
         let downloadTask = URLSession.shared.downloadTask(with: url) { (path, response, error) in
+            if self.xmlParser == nil {
+                self.xmlParser = CurrencyXMLParser()
+            }
             
-            print("data: \(path); response: \(response); error: \(error)")
-            
-            completion("temp string")
+            // check for error, check response is valid Note we are expecting a 404
+            if let path = path {
+                do {
+                    let xmlData = try Data(contentsOf: path)
+                    self.xmlParser?.retreveCurrencyValue(from: xmlData, completion: completion)
+                } catch {
+                    // handle error
+                }
+            }
         }
         
         downloadTask.resume()
