@@ -34,6 +34,7 @@
 		55C065B120587F7F009ABAF4 /* Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55C065B020587F7F009ABAF4 /* Notifications.swift */; };
 		55CC22482060FB260025884B /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 557691C2204E0A700097CCF7 /* Info.plist */; };
 		55CC224A2061E5040025884B /* TopLevelTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55CC22492061E5040025884B /* TopLevelTableViewController.swift */; };
+		55F45CE62072F36A00ABAE9C /* VisibleViewControllerExtention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55F45CE52072F36A00ABAE9C /* VisibleViewControllerExtention.swift */; };
 		8A9B21675D6D0E6362AEC620 /* Pods_dailyExchangeTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83B31008FD3752651DC709BA /* Pods_dailyExchangeTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -76,6 +77,7 @@
 		55C065AE2057A88D009ABAF4 /* Login.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
 		55C065B020587F7F009ABAF4 /* Notifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notifications.swift; sourceTree = "<group>"; };
 		55CC22492061E5040025884B /* TopLevelTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopLevelTableViewController.swift; sourceTree = "<group>"; };
+		55F45CE52072F36A00ABAE9C /* VisibleViewControllerExtention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisibleViewControllerExtention.swift; sourceTree = "<group>"; };
 		56F94973C6F49D846316749B /* Pods_dailyExchange.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_dailyExchange.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7E201AE21138C3B9B3F190B0 /* Pods-dailyExchange.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-dailyExchange.release.xcconfig"; path = "Pods/Target Support Files/Pods-dailyExchange/Pods-dailyExchange.release.xcconfig"; sourceTree = "<group>"; };
 		83B31008FD3752651DC709BA /* Pods_dailyExchangeTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_dailyExchangeTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -175,6 +177,7 @@
 			children = (
 				557691B6204E0A700097CCF7 /* AppDelegate.swift */,
 				55452E80204E286900658D6D /* Keys.swift */,
+				55F45CE42072F33200ABAE9C /* Extentions */,
 				55452E85204E617E00658D6D /* Utilities */,
 				556D4FD42058E52B005307BC /* View */,
 				55452E84204E615D00658D6D /* Models */,
@@ -210,6 +213,14 @@
 				55B8B8E0206078D600430CE9 /* currencySchema.xml */,
 			);
 			path = Assets;
+			sourceTree = "<group>";
+		};
+		55F45CE42072F33200ABAE9C /* Extentions */ = {
+			isa = PBXGroup;
+			children = (
+				55F45CE52072F36A00ABAE9C /* VisibleViewControllerExtention.swift */,
+			);
+			path = Extentions;
 			sourceTree = "<group>";
 		};
 		AEAD2D2C9644A19CF70632D9 /* Pods */ = {
@@ -466,6 +477,7 @@
 				55452E4D204E0FCB00658D6D /* MainViewController.swift in Sources */,
 				556D4FD8205A3C7F005307BC /* NetworkingManager.swift in Sources */,
 				55452E4F204E0FDD00658D6D /* SettingsViewController.swift in Sources */,
+				55F45CE62072F36A00ABAE9C /* VisibleViewControllerExtention.swift in Sources */,
 				55452E53204E101700658D6D /* SignUpViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
