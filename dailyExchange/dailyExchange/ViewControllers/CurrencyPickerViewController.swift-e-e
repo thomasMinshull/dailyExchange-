@@ -36,7 +36,8 @@ class CurrencyPickerViewController: UIViewController, UITableViewDelegate, UITab
             return
         }
         if let denominatorIndexPath = denominatorTableView.indexPathForSelectedRow,
-            let numeratorIndexPath = numeratorTableView.indexPathForSelectedRow
+            let numeratorIndexPath = numeratorTableView.indexPathForSelectedRow,
+            denominatorIndexPath != numeratorIndexPath
         {
             let keys = NotificationKeys.DidSelectCurrencies()
         
@@ -51,6 +52,20 @@ class CurrencyPickerViewController: UIViewController, UITableViewDelegate, UITab
             
             dismiss(animated: true, completion: nil)
             
+        } else if let denominatorIndexPath = denominatorTableView.indexPathForSelectedRow,
+            let numeratorIndexPath = numeratorTableView.indexPathForSelectedRow,
+            denominatorIndexPath == numeratorIndexPath
+        {
+            let alert = UIAlertController(title: "Select 2 different currencies to compair",
+                                          message: nil,
+                                          preferredStyle: .alert)
+            let action = UIAlertAction(title: "OK",
+                                       style: .default,
+                                       handler: nil)
+            alert.addAction(action)
+            self.present(alert,
+                         animated: true,
+                         completion: nil)
         } else {
             let alert = UIAlertController(title: "Select 2 currencies to compair",
                                           message: nil,
