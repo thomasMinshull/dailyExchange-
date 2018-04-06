@@ -8,21 +8,26 @@
 
 import UIKit
 
-class CurrencyPickerViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class CurrencyPickerViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate {
     var currencyList: [Currency]?
     private let currencyCellID = CurrencyTableViewCell().reuseIdentifier!
     
+    @IBOutlet var searchBar: UISearchBar!
     @IBOutlet var currencyLabel: UILabel!
     @IBOutlet var numeratorTableView: UITableView!
     @IBOutlet var denominatorTableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // set delegates
         numeratorTableView.delegate = self
         numeratorTableView.dataSource = self
         denominatorTableView.delegate = self
         denominatorTableView.dataSource = self
+        searchBar.delegate = self
         
+        // resgister cells
         let cellNib = UINib(nibName: "CurrencyTableViewCell", bundle: nil)
         
         numeratorTableView.register(cellNib, forCellReuseIdentifier: currencyCellID)
@@ -82,6 +87,24 @@ class CurrencyPickerViewController: UIViewController, UITableViewDelegate, UITab
     
     @IBAction func cancelTapped(_ sender: Any) {
         dismiss(animated: true, completion: nil)
+    }
+    
+    // MARK: - SearchBarDelegate methods
+    
+    public func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        guard searchText.count > 0  else {
+            return
+        }
+        
+        if let index = currencyList?.index(where: {
+            (currency) -> Bool in
+            return currency.abriviation.contains(searchText) ||
+                currency.fullName.contains(searchText)
+        }) {
+            let selectedTableview = searchBar.selectedScopeButtonIndex == 1 ? denominatorTableView : numeratorTableView
+            let indexPath = IndexPath(row: index, section: 0)
+            selectedTableview?.scrollToRow(at: indexPath, at: .top, animated: true)
+        }
     }
     
     // MARK: - tableViewDataSource methods
