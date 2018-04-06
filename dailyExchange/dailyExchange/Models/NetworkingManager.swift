@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 /*
  API
@@ -56,6 +57,17 @@ class NetworkManager {
         let urlString = ECBURLGenerator.ecburlCompairing(last: 1, of: currency, to: base, over: .daily)
         let url = URL(string: urlString)!
         let downloadTask = URLSession.shared.downloadTask(with: url) { (path, response, error) in
+            guard error == nil else {
+                ErrorPrecentor(error: error!).pressentAlertWith(actions: [UIAlertAction]())
+                return
+            }
+            
+            guard let res = response as? HTTPURLResponse,
+                res.statusCode == 404 else {
+                    ErrorPrecentor(error: DefaultError()).pressentAlertWith(actions: [UIAlertAction]())
+                    return
+            }
+            
             if self.xmlParser == nil {
                 self.xmlParser = CurrencyXMLParser()
             }
@@ -75,7 +87,7 @@ class NetworkManager {
     }
     
     
- 
+    
 }
 
 
