@@ -91,7 +91,7 @@ class CurrencyPickerViewController: UIViewController, UITableViewDelegate, UITab
     
     // MARK: - SearchBarDelegate methods
     
-    public func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         guard searchText.count > 0  else {
             return
         }
@@ -105,6 +105,14 @@ class CurrencyPickerViewController: UIViewController, UITableViewDelegate, UITab
             let indexPath = IndexPath(row: index, section: 0)
             selectedTableview?.scrollToRow(at: indexPath, at: .top, animated: true)
         }
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int) {
+        guard selectedScope < 2 else {
+            return
+        }
+        
+        searchBar.text = ""
     }
     
     // MARK: - tableViewDataSource methods
