@@ -10,29 +10,19 @@ import Foundation
 
 
 struct Currency {
-    static private let cachedCurrencySchemeFileName = "cachedCurrencyScheme.xml"
+    static private let currencyListFileName = "currencyList"
+    static private let currencyListExtention = "json"
     
     let fullName: String
     let abriviation: String
     
-    static func filePathForCachedSchema() -> URL? {
-        let documentsDirectory = FileManager.default.urls(for: .documentDirectory,
-                                                          in: .userDomainMask).last
-        return documentsDirectory?.appendingPathComponent(cachedCurrencySchemeFileName)
-    }
-    
-    static func filePathForCurrencySchema() -> URL {
-        let documentsDirectory = FileManager.default.urls(for: .documentDirectory,
-                                                          in: .userDomainMask).last
-        let cashedFileURL = documentsDirectory?.appendingPathComponent(cachedCurrencySchemeFileName)
+    static func filePathForCurrencyList() -> URL? {
+        let path = Bundle.main.path(forResource: currencyListFileName, ofType: currencyListExtention)
         
-        if let result = (try? cashedFileURL?.checkResourceIsReachable()),
-            result == true
-        {
-            return cashedFileURL!
+        if let path = path {
+            return URL(fileURLWithPath: path)
         } else {
-            return Bundle.main.url(forResource: "currencySchema", withExtension: "xml")!
+            return nil
         }
     }
-    
 }

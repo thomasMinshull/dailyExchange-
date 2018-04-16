@@ -14,8 +14,8 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     @IBOutlet var exchangeRateButton: UIButton!
     @IBOutlet var exchangeRatesTableView: UITableView!
     
+    private let fileReader = FileReader()
     private var currencyList: [Currency]?
-    private let currencyParser = CurrencyXMLParser()
     private let networkManager = NetworkManager()
     private var numeratorCurrency: Currency?
     private var baseCurrency: Currency?
@@ -25,12 +25,21 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         super.viewDidLoad()
         self.exchangeRatesTableView.dataSource = self
         self.exchangeRatesTableView.delegate = self
-        currencyParser.retreveCurrencyList(from: Currency.filePathForCurrencySchema()) {
-            (currencyList) in
-            self.currencyList = currencyList
-            print(currencyList)
-        }
         
+        fileReader.fetchCurrencyListInBackground { (data) in
+            do {
+                let jsonDecoder = JSONDecoder()
+                let listWrapper = try jsonDecoder.decode(CurrencyListWrapper.self, from: data)
+                self.currencyList = listWrapper.currencies
+                
+                DispatchQueue.main.async {
+                    self.exchangeRatesTableView.reloadData()
+                }
+            } catch {
+                print("\(error)") // TODO look into what error's are thrown here and what can be done 
+            }
+        }
+
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(self.reloadForCurrencies(_:)),
                                                name: .didSelectCurrencies,

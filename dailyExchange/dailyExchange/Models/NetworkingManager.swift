@@ -11,83 +11,88 @@ import UIKit
 
 /*
  API
- https://sdw-wsrest.ecb.europa.eu/service/data/EXR/D.USD.EUR.SP00.A?lastNObservations=1 // Most recent exchange rate USD/EUR up to the minute averaged per minute
- https://sdw-wsrest.ecb.europa.eu/service/datastructure/ECB/ // DBD for Creating the URL's for fetching data 
- //
+ // list of available currencies
+ http://apilayer.net/api/list?access_key=3b41cec354bb1e790c40bc82e702d359&prettyprint=1
+ 
+ 
  */
 
-struct ECBURLGenerator {
-    static private let baseURL = "https://sdw-wsrest.ecb.europa.eu/service/"
-    static private let lastNParameter = "lastNObservations="
-    static private let exr = "EXR/"
-    static private let sp00 = "SP00"
+struct CurrencyURLGenerator {
+    static private let baseURL = URL(string: "http://apilayer.net/api")!
+    static private let accessKeyQueryItem = URLQueryItem(name: "access_key", value: currencyAPIKey)
     
-    private enum Resource: String {
-        case data = "data/"
-        case schema = "schema/"
-        case codelist = "codelist/"
-        case datastructure = "datastructure/"
+    enum EndPoint: String {
+        case live
+        case historical
+        case convert
+        case timeframe
+        case change
     }
     
-    enum URLTimeKey: String {
-        case minute = "N"
-        case daily = "D"
-        case monthly = "M"
-        case quarterly = "Q"
-        case halfYear = "H"
-        case annually = "A"
+    enum QueryKey: String {
+        case from
+        case to
+        case amount
+        case date // YY-MM-DD
+        case currencies
+        case startDate = "start_date"
+        case endDate = "end_date"
+        case format
+        case source
     }
     
-    static func ecburlCompairing(last nOccurances: Int?, of currency: Currency, to baseCurrency: Currency, over timePeriod: URLTimeKey) -> String {
+    static func urlFor(endPoint: EndPoint, params: [QueryKey: String]) -> URL? {
+        let url = baseURL.appendingPathComponent(endPoint.rawValue)
+        var urlComponets = URLComponents(url: url, resolvingAgainstBaseURL: false)
         
-        var urlString =  "\(baseURL)\(Resource.data)/\(exr)\(timePeriod.rawValue).\(currency.abriviation).\(baseCurrency.abriviation).\(sp00).A"
-        
-        if let n = nOccurances {
-            urlString = urlString + "?" + lastNParameter + "\(n)"
+        let additionalParams = params.map {
+            return URLQueryItem(name: $0.key.rawValue, value: $0.value)
         }
-        
-        return urlString
+
+        urlComponets?.queryItems = [accessKeyQueryItem] + additionalParams
+
+        return urlComponets?.url
     }
 }
 
 class NetworkManager {
-    var xmlParser: CurrencyXMLParser?
+    
     
     func exchangeRateforCurrency(_ currency: Currency, with base: Currency, completion: @escaping (String) -> ()) {
-        let urlString = ECBURLGenerator.ecburlCompairing(last: 1, of: currency, to: base, over: .daily)
-        let url = URL(string: urlString)!
-        let downloadTask = URLSession.shared.downloadTask(with: url) { (path, response, error) in
+        
+        let params: [CurrencyURLGenerator.QueryKey: String] = [
+            .currencies: currency.abriviation,
+            .source: base.abriviation
+        ]
+        
+        guard let url = CurrencyURLGenerator.urlFor(endPoint: .live, params: params) else {
+            return
+        }
+        
+        let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
             guard error == nil else {
                 ErrorPrecentor(error: error!).pressentAlertWith(actions: [UIAlertAction]())
                 return
             }
             
             guard let res = response as? HTTPURLResponse,
-                res.statusCode == 404 else {
+                res.statusCode == 200 else {
+                    //TODO map error response to presentable errors
+                    //TODO handle cacheing of unchanged values
                     ErrorPrecentor(error: DefaultError()).pressentAlertWith(actions: [UIAlertAction]())
                     return
             }
             
-            if self.xmlParser == nil {
-                self.xmlParser = CurrencyXMLParser()
-            }
+            // TODO Deserialize data
+            // Get response currency Value
+            // Call completion handler & pass in string value
             
-            // check for error, check response is valid Note we are expecting a 404
-            if let path = path {
-                do {
-                    let xmlData = try Data(contentsOf: path)
-                    self.xmlParser?.retreveCurrencyValue(from: xmlData, completion: completion)
-                } catch {
-                    // handle error
-                }
-            }
+            
+            
         }
         
-        downloadTask.resume()
+        task.resume()
     }
-    
-    
-    
 }
 
 

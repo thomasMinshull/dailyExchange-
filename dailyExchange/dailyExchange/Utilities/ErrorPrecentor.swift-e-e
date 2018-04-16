@@ -20,16 +20,21 @@ struct DefaultError: Error, PresentableError {
     let errorMessage: String? = nil
 }
 
+struct UnaccesibleCurrencyListError: Error, PresentableError {
+    let errorTitle = "Currency List Error"
+    let errorMessage: String? = "We are currently unable to access the list of avalible currencies. You may need to update the app."
+}
+
 // MARK: - PresentableErrors for NSErrors
 
 struct NSURLErrorSecureConnectionFailed: PresentableError {
     let errorTitle = "Network Connection Failed"
-    let errorMessage: String? = "Please check your internet connection and try again"
+    let errorMessage: String? = "Please check your internet connection and try again."
 }
 
 struct NSURLErrorConnectionFailed: PresentableError {
     let errorTitle = "Network Connection Failed"
-    let errorMessage: String? = "Please check your internet connection and try again"
+    let errorMessage: String? = "Please check your internet connection and try again."
 }
 
 // MARK: - ErrorPracentor Class
