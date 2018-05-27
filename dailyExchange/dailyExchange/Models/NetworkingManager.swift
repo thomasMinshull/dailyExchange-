@@ -83,7 +83,6 @@ class NetworkManager {
                     return
             }
             
-            // TODO Deserialize data
             guard let data = data else {
                 print("Error, no data was returned but status Code was 200")
                 return
@@ -92,15 +91,10 @@ class NetworkManager {
             guard let exchangeRate = try? JSONDecoder().decode(ExchangeRate.self, from: data) else {
                 print("Error, was undable to decode JSON Currency Data")
                 return
-            }
-            
-            print(exchangeRate)
-            
-            // Get response currency Value
-            // Call completion handler & pass in string value
-            
-            
-            
+            }            
+
+            let formattedString = String(format: "%.2f", exchangeRate.rate) // note this rounds up
+            completion(formattedString)
         }
         
         task.resume()
