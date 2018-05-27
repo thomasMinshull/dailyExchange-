@@ -6,6 +6,22 @@
 //  Copyright © 2018 thomas minshull. All rights reserved.
 //
 
+// deserializes currencies form currencyList.json file
+
+/* JSON we are converting
+ {
+    "success": true,
+    "terms": "https://currencylayer.com/terms",
+    "privacy": "https://currencylayer.com/privacy",
+    "currencies": {
+        "AED": "United Arab Emirates Dirham",
+        "AFN": "Afghan Afghani",
+        "ALL": "Albanian Lek" ...
+    }
+ }
+ 
+ */
+
 import Foundation
 
 struct CurrencyListWrapper: Codable {

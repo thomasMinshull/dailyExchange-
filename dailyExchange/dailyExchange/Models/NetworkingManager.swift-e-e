@@ -12,13 +12,13 @@ import UIKit
 /*
  API
  // list of available currencies
- http://apilayer.net/api/list?access_key=3b41cec354bb1e790c40bc82e702d359&prettyprint=1
- 
+ https://apilayer.net/api/list?access_key=3b41cec354bb1e790c40bc82e702d359&prettyprint=1
+ // currently paying $100 USD per year for this api, renews on the Jan 01 2019 // this gets me the ability to switch base currencies and https 
  
  */
 
 struct CurrencyURLGenerator {
-    static private let baseURL = URL(string: "http://apilayer.net/api")!
+    static private let baseURL = URL(string: "https://apilayer.net/api")!
     static private let accessKeyQueryItem = URLQueryItem(name: "access_key", value: currencyAPIKey)
     
     enum EndPoint: String {
@@ -84,6 +84,18 @@ class NetworkManager {
             }
             
             // TODO Deserialize data
+            guard let data = data else {
+                print("Error, no data was returned but status Code was 200")
+                return
+            }
+            
+            guard let exchangeRate = try? JSONDecoder().decode(ExchangeRate.self, from: data) else {
+                print("Error, was undable to decode JSON Currency Data")
+                return
+            }
+            
+            print(exchangeRate)
+            
             // Get response currency Value
             // Call completion handler & pass in string value
             

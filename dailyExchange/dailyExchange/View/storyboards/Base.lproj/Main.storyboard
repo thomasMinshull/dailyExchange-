@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="mvo-BZ-JBE">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14111" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="mvo-BZ-JBE">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -26,7 +26,7 @@
                         </userGuides>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="poo-YM-RjR">
-                                <rect key="frame" x="163" y="588" width="48" height="30"/>
+                                <rect key="frame" x="163.5" y="588" width="48" height="30"/>
                                 <state key="normal" title="Logout"/>
                                 <connections>
                                     <action selector="logoutTapped:" destination="UfY-qF-KgV" eventType="touchUpInside" id="eSw-99-AiG"/>
@@ -45,7 +45,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IHB-bc-ZL5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="558" y="-580"/>
+            <point key="canvasLocation" x="673" y="-543"/>
         </scene>
         <!--$-->
         <scene sceneID="tne-QT-ifu">
@@ -56,16 +56,16 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0.00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Ef-cb-bex">
-                                <rect key="frame" x="158.5" y="90.5" width="59" height="33.5"/>
+                                <rect key="frame" x="158" y="89.5" width="59" height="33.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="28"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="C8x-R5-5Q1">
-                                <rect key="frame" x="0.0" y="263" width="375" height="350"/>
+                                <rect key="frame" x="0.0" y="262" width="375" height="351"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ExchangeRateTableViewCell" id="ivj-tM-HmU" customClass="ExchangeRateTableViewCell" customModule="dailyExchange" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ExchangeRateTableViewCell" id="ivj-tM-HmU" customClass="ExchangeRateTableViewCell" customModule="dailyExchange" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ivj-tM-HmU" id="DsU-hS-icq">
@@ -127,7 +127,7 @@
                                 </prototypes>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3f4-uy-2ML">
-                                <rect key="frame" x="94.5" y="132" width="187.5" height="36"/>
+                                <rect key="frame" x="94" y="131" width="187.5" height="36"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <state key="normal" title="$ / Base"/>
                                 <connections>
@@ -135,7 +135,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="B8P-TV-Ovx">
-                                <rect key="frame" x="172" y="183" width="32" height="30"/>
+                                <rect key="frame" x="171.5" y="182" width="32" height="30"/>
                                 <state key="normal" title="save"/>
                                 <connections>
                                     <action selector="saveButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="jH5-rG-hnO"/>
@@ -169,7 +169,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="557.60000000000002" y="132.68365817091455"/>
+            <point key="canvasLocation" x="674" y="133"/>
         </scene>
         <!--Currency Picker View Controller-->
         <scene sceneID="Gj5-le-lvP">
@@ -183,10 +183,10 @@
                                 <rect key="frame" x="25" y="45" width="325" height="597"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="itb-tP-9nj">
-                                        <rect key="frame" x="0.0" y="0.0" width="325" height="150"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="325" height="149.5"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$/$" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cHS-2o-8dJ">
-                                                <rect key="frame" x="0.0" y="53.5" width="325" height="43"/>
+                                                <rect key="frame" x="0.0" y="53" width="325" height="43"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="36"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -200,7 +200,7 @@
                                         </constraints>
                                     </view>
                                     <searchBar contentMode="redraw" searchBarStyle="minimal" text="" showsCancelButton="YES" showsScopeBar="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wBD-fB-53b">
-                                        <rect key="frame" x="0.0" y="150" width="325" height="100"/>
+                                        <rect key="frame" x="0.0" y="149.5" width="325" height="100"/>
                                         <textInputTraits key="textInputTraits"/>
                                         <scopeButtonTitles>
                                             <string>$</string>
@@ -208,7 +208,7 @@
                                         </scopeButtonTitles>
                                     </searchBar>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="qB4-QD-PWg">
-                                        <rect key="frame" x="162.5" y="250" width="162.5" height="307"/>
+                                        <rect key="frame" x="162.5" y="249.5" width="162.5" height="307.5"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </tableView>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="svr-NR-jEk">
@@ -236,7 +236,7 @@
                                         </constraints>
                                     </stackView>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="sOd-hL-8qw">
-                                        <rect key="frame" x="0.0" y="250" width="162.5" height="307"/>
+                                        <rect key="frame" x="0.0" y="249.5" width="162.5" height="307.5"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </tableView>
                                 </subviews>
@@ -287,10 +287,10 @@
             </objects>
             <point key="canvasLocation" x="1405.5999999999999" y="131.78410794602701"/>
         </scene>
-        <!--Top Level Table View Controller-->
+        <!--Initial Tab View Controller-->
         <scene sceneID="u2m-b8-Ldt">
             <objects>
-                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="mvo-BZ-JBE" customClass="TopLevelTableViewController" customModule="dailyExchange" customModuleProvider="target" sceneMemberID="viewController">
+                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="mvo-BZ-JBE" customClass="InitialTabViewController" customModule="dailyExchange" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="u4T-Ie-WNI">
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
