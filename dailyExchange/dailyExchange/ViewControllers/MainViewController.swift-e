@@ -15,10 +15,10 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     @IBOutlet var exchangeRatesTableView: UITableView!
     
     private let fileReader = FileReader()
-    private var currencyList: [Currency]?
+    private var currencyList: [CurrencyJsonMapping]?
     private let networkManager = NetworkManager()
-    private var numeratorCurrency: Currency?
-    private var baseCurrency: Currency?
+    private var numeratorCurrency: CurrencyJsonMapping?
+    private var baseCurrency: CurrencyJsonMapping?
     
     override func viewDidLoad()
     {
@@ -29,7 +29,7 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         fileReader.fetchCurrencyListInBackground { (data) in
             do {
                 let jsonDecoder = JSONDecoder()
-                let listWrapper = try jsonDecoder.decode(CurrencyListWrapper.self, from: data)
+                let listWrapper = try jsonDecoder.decode(CurrencyListJsonMapping.self, from: data)
                 self.currencyList = listWrapper.currencies
                 
                 DispatchQueue.main.async {
@@ -66,14 +66,16 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     @IBAction func saveButtonTapped(_ sender: Any)
     {
         // add current Exchange Model to datasource and reload tableView
+        
+        
     }
     
     // MARK: - Notification Methods
     
     @objc func reloadForCurrencies(_ notification: NSNotification) {
         let keys = NotificationKeys.DidSelectCurrencies()
-        if let numeratorCurrency = notification.userInfo?[keys.numeratorCurrencyKey] as? Currency,
-            let baseCurrency = notification.userInfo?[keys.denominatorCurrencyKey] as? Currency
+        if let numeratorCurrency = notification.userInfo?[keys.numeratorCurrencyKey] as? CurrencyJsonMapping,
+            let baseCurrency = notification.userInfo?[keys.denominatorCurrencyKey] as? CurrencyJsonMapping
         {
             networkManager.exchangeRateforCurrency(numeratorCurrency, with: baseCurrency) { exchangeRate in
                 DispatchQueue.main.async {

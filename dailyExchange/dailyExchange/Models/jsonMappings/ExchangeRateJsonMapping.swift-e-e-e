@@ -24,7 +24,7 @@
 
 import Foundation
 
-struct ExchangeRate: Decodable {
+struct ExchangeRateJsonMapping: Decodable {
     enum ExchangeRateKeys: String, CodingKey {
         case timestamp
         case source

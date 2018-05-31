@@ -16,7 +16,7 @@ class CurrencyTableViewCell: UITableViewCell {
         return "CurrencyTableViewCell"
     }
     
-    func setUpWith(currency: Currency) {
+    func setUpWith(currency: CurrencyJsonMapping) {
         abriviationLabel?.text = currency.abriviation
         fullNameLabel?.text = currency.fullName
     }

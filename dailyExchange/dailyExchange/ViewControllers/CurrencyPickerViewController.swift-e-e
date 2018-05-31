@@ -9,7 +9,7 @@
 import UIKit
 
 class CurrencyPickerViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate {
-    var currencyList: [Currency]?
+    var currencyList: [CurrencyJsonMapping]?
     private let currencyCellID = CurrencyTableViewCell().reuseIdentifier!
     
     @IBOutlet var searchBar: UISearchBar!

@@ -10,7 +10,7 @@ import UIKit
 
 class FileReader: NSObject {
     func fetchCurrencyListInBackground(completionHandler: (Data) -> ()) {
-        guard let currencyListFileURL = Currency.filePathForCurrencyList() else {
+        guard let currencyListFileURL = CurrencyJsonMapping.filePathForCurrencyList() else {
             fatalError("Unable to unwrap currency List URL")
         }
         do {

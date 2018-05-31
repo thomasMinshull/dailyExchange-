@@ -9,7 +9,7 @@
 import Foundation
 
 
-struct Currency {
+struct CurrencyJsonMapping {
     static private let currencyListFileName = "currencyList"
     static private let currencyListExtention = "json"
     

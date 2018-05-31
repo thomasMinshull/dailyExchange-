@@ -14,7 +14,6 @@ import UIKit
  // list of available currencies
  https://apilayer.net/api/list?access_key=3b41cec354bb1e790c40bc82e702d359&prettyprint=1
  // currently paying $100 USD per year for this api, renews on the Jan 01 2019 // this gets me the ability to switch base currencies and https 
- 
  */
 
 struct CurrencyURLGenerator {
@@ -58,7 +57,7 @@ struct CurrencyURLGenerator {
 class NetworkManager {
     
     
-    func exchangeRateforCurrency(_ currency: Currency, with base: Currency, completion: @escaping (String) -> ()) {
+    func exchangeRateforCurrency(_ currency: CurrencyJsonMapping, with base: CurrencyJsonMapping, completion: @escaping (String) -> ()) {
         
         let params: [CurrencyURLGenerator.QueryKey: String] = [
             .currencies: currency.abriviation,
@@ -78,7 +77,11 @@ class NetworkManager {
             guard let res = response as? HTTPURLResponse,
                 res.statusCode == 200 else {
                     //TODO map error response to presentable errors
-                    //TODO handle cacheing of unchanged values
+                    if let res = response as? HTTPURLResponse,
+                        res.statusCode == 20 {
+                        ErrorPrecentor(error: URLError.notConnectedToInternet as! Error).pressentAlertWith(actions: [UIAlertAction]())
+                    }
+                    
                     ErrorPrecentor(error: DefaultError()).pressentAlertWith(actions: [UIAlertAction]())
                     return
             }
@@ -88,7 +91,7 @@ class NetworkManager {
                 return
             }
             
-            guard let exchangeRate = try? JSONDecoder().decode(ExchangeRate.self, from: data) else {
+            guard let exchangeRate = try? JSONDecoder().decode(ExchangeRateJsonMapping.self, from: data) else {
                 print("Error, was undable to decode JSON Currency Data")
                 return
             }            

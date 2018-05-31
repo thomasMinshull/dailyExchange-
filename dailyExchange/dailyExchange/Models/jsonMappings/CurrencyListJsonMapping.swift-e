@@ -24,7 +24,7 @@
 
 import Foundation
 
-struct CurrencyListWrapper: Codable {
+struct CurrencyListJsonMapping: Codable {
     enum WrapperKeys: String, CodingKey {
         case terms
         case privacy
@@ -36,14 +36,14 @@ struct CurrencyListWrapper: Codable {
         let container = try decoder.container(keyedBy: WrapperKeys.self)
         let nestedContainer = try container.nestedContainer(keyedBy: DynamicCodingKey.self, forKey: .currencies)
         
-        var currencies: [Currency] = []
+        var currencies: [CurrencyJsonMapping] = []
         
         do {
             for key in nestedContainer.allKeys {
                 
                 let name = try nestedContainer.decode(String.self, forKey: key)
                 
-                let currency = Currency(fullName: name, abriviation: key.stringValue)
+                let currency = CurrencyJsonMapping(fullName: name, abriviation: key.stringValue)
                 currencies.append(currency)
             }
             
@@ -63,5 +63,5 @@ struct CurrencyListWrapper: Codable {
         }
     }
     
-    var currencies: [Currency]
+    var currencies: [CurrencyJsonMapping]
 }
