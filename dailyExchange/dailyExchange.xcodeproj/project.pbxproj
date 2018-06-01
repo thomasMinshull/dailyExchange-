@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		255E39C4843636F62EEC5381 /* Pods_dailyExchange.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 56F94973C6F49D846316749B /* Pods_dailyExchange.framework */; };
+		55244D8520C0BA2F00E0FAB9 /* ExchangeRateParseObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55244D8420C0BA2F00E0FAB9 /* ExchangeRateParseObject.swift */; };
 		55452E4D204E0FCB00658D6D /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55452E4C204E0FCB00658D6D /* MainViewController.swift */; };
 		55452E4F204E0FDD00658D6D /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55452E4E204E0FDD00658D6D /* SettingsViewController.swift */; };
 		55452E51204E0FF600658D6D /* ChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55452E50204E0FF600658D6D /* ChartViewController.swift */; };
@@ -52,6 +53,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		55244D8420C0BA2F00E0FAB9 /* ExchangeRateParseObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeRateParseObject.swift; sourceTree = "<group>"; };
 		55452E4C204E0FCB00658D6D /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		55452E4E204E0FDD00658D6D /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		55452E50204E0FF600658D6D /* ChartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartViewController.swift; sourceTree = "<group>"; };
@@ -127,6 +129,7 @@
 			isa = PBXGroup;
 			children = (
 				55452E88204F468F00658D6D /* User.swift */,
+				55244D8420C0BA2F00E0FAB9 /* ExchangeRateParseObject.swift */,
 			);
 			path = parseObjects;
 			sourceTree = "<group>";
@@ -510,6 +513,7 @@
 				554C7D8E206309CC0087ECAB /* CurrencyPickerViewController.swift in Sources */,
 				55E72CA0208447BB003AD19A /* DynamicCodingKey.swift in Sources */,
 				55452E89204F468F00658D6D /* User.swift in Sources */,
+				55244D8520C0BA2F00E0FAB9 /* ExchangeRateParseObject.swift in Sources */,
 				554C7D9120630D300087ECAB /* CurrencyTableViewCell.swift in Sources */,
 				556D4FDA206061F4005307BC /* CurrencyJsonMapping.swift in Sources */,
 				55452E4D204E0FCB00658D6D /* MainViewController.swift in Sources */,

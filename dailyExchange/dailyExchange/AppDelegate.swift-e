@@ -13,6 +13,11 @@ import Parse
 class AppDelegate: UIResponder, UIApplicationDelegate
 {
     var window: UIWindow?
+    
+    lazy var registerParseSubclasses: () = {
+        // Lazy instanciation insures that this block of code only runs once 
+        ExchangeRateParseObject.registerSubclass()
+    }()
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool
     {
@@ -42,7 +47,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate
         {   // user needs to login
             loadLoginStoryboard()
         }
-
+        
+        _ = registerParseSubclasses
+        
         return true
     }
 
