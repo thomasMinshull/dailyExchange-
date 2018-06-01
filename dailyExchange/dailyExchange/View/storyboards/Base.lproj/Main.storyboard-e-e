@@ -65,7 +65,7 @@
                                 <rect key="frame" x="0.0" y="262" width="375" height="351"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ExchangeRateTableViewCell" id="ivj-tM-HmU" customClass="ExchangeRateTableViewCell" customModule="dailyExchange" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ExchangeRateTableViewCell" id="ivj-tM-HmU" customClass="ExchangeRateTableViewCell" customModule="dailyExchange" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ivj-tM-HmU" id="DsU-hS-icq">
@@ -199,7 +199,7 @@
                                             <constraint firstAttribute="trailing" secondItem="cHS-2o-8dJ" secondAttribute="trailing" id="tGH-6Q-TzZ"/>
                                         </constraints>
                                     </view>
-                                    <searchBar contentMode="redraw" searchBarStyle="minimal" text="" showsCancelButton="YES" showsScopeBar="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wBD-fB-53b">
+                                    <searchBar contentMode="redraw" searchBarStyle="minimal" text="" showsScopeBar="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wBD-fB-53b">
                                         <rect key="frame" x="0.0" y="149.5" width="325" height="100"/>
                                         <textInputTraits key="textInputTraits"/>
                                         <scopeButtonTitles>
