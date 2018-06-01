@@ -57,7 +57,7 @@ struct CurrencyURLGenerator {
 class NetworkManager {
     
     
-    func exchangeRateforCurrency(_ currency: CurrencyJsonMapping, with base: CurrencyJsonMapping, completion: @escaping (String) -> ()) {
+    func exchangeRateforCurrency(_ currency: CurrencyJsonMapping, with base: CurrencyJsonMapping, completion: @escaping (ExchangeRateParseObject) -> ()) {
         
         let params: [CurrencyURLGenerator.QueryKey: String] = [
             .currencies: currency.abriviation,
@@ -91,13 +91,14 @@ class NetworkManager {
                 return
             }
             
-            guard let exchangeRate = try? JSONDecoder().decode(ExchangeRateJsonMapping.self, from: data) else {
+            guard let exchangeRateJsonMapping = try? JSONDecoder().decode(ExchangeRateJsonMapping.self, from: data) else {
                 print("Error, was undable to decode JSON Currency Data")
                 return
-            }            
+            }
+            
+            let exchangeRate = ExchangeRateParseObject(jsonMapping: exchangeRateJsonMapping)
 
-            let formattedString = String(format: "%.2f", exchangeRate.rate) // note this rounds up
-            completion(formattedString)
+            completion(exchangeRate)
         }
         
         task.resume()

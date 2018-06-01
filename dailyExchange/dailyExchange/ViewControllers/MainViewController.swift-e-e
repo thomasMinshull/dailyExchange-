@@ -17,8 +17,26 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     private let fileReader = FileReader()
     private var currencyList: [CurrencyJsonMapping]?
     private let networkManager = NetworkManager()
-    private var numeratorCurrency: CurrencyJsonMapping?
-    private var baseCurrency: CurrencyJsonMapping?
+    
+    private var exchangeRate: ExchangeRateParseObject? {
+        didSet {
+            guard let exchangeRate = exchangeRate else {
+                return
+            }
+            
+            // update UI
+            DispatchQueue.main.async {
+                self.exchangeRateButton?.setTitle("\(exchangeRate.numberatorCurrencyAbriviation)/\(exchangeRate.denominatorCurrencyAbriviation)",
+                    for: .normal)
+                
+                // ToDo the number of decimal places should be a function of the base currency // https://stackoverflow.com/questions/2701301/various-countrys-currency-decimal-places-width-in-the-iphone-sdk
+                
+                let formatedRate = String(format: "%.2f", exchangeRate.rate)
+                self.exchangeRateLabel?.text = formatedRate
+            }
+        }
+    }
+
     
     override func viewDidLoad()
     {
@@ -66,7 +84,7 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     @IBAction func saveButtonTapped(_ sender: Any)
     {
         // add current Exchange Model to datasource and reload tableView
-        
+        // ToDo Pin current exchange rate
         
     }
     
@@ -78,15 +96,9 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
             let baseCurrency = notification.userInfo?[keys.denominatorCurrencyKey] as? CurrencyJsonMapping
         {
             networkManager.exchangeRateforCurrency(numeratorCurrency, with: baseCurrency) { exchangeRate in
-                DispatchQueue.main.async {
-                    self.exchangeRateLabel.text = exchangeRate
-                }
+                self.exchangeRate = exchangeRate
             }
-            
-            exchangeRateButton.setTitle("\(numeratorCurrency.abriviation)/\(baseCurrency.abriviation)",
-                for: .normal)
         }
-        
     }
     
     // MARK: - UITableViewDataSource
