@@ -134,7 +134,7 @@
                                     <action selector="exchangeRateButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="QsU-K8-fFR"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="B8P-TV-Ovx">
+                            <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="B8P-TV-Ovx">
                                 <rect key="frame" x="171.5" y="182" width="32" height="30"/>
                                 <state key="normal" title="save"/>
                                 <connections>
@@ -165,6 +165,7 @@
                         <outlet property="exchangeRateButton" destination="3f4-uy-2ML" id="LjL-DG-2Bm"/>
                         <outlet property="exchangeRateLabel" destination="3Ef-cb-bex" id="xyE-wY-fSe"/>
                         <outlet property="exchangeRatesTableView" destination="C8x-R5-5Q1" id="N7R-Q2-2qH"/>
+                        <outlet property="saveButton" destination="B8P-TV-Ovx" id="hfn-LR-RgF"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

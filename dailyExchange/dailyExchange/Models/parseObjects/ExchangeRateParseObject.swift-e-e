@@ -26,4 +26,6 @@ class ExchangeRateParseObject: PFObject, PFSubclassing {
         rate = jsonMapping.rate
         super.init()
     }
+    
+    // ToDO override == operator 
 }

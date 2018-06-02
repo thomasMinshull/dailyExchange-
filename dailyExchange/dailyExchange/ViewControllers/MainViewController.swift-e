@@ -13,19 +13,29 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     @IBOutlet var exchangeRateLabel: UILabel!
     @IBOutlet var exchangeRateButton: UIButton!
     @IBOutlet var exchangeRatesTableView: UITableView!
+    @IBOutlet var saveButton: UIButton!
     
     private let fileReader = FileReader()
     private var currencyList: [CurrencyJsonMapping]?
     private let networkManager = NetworkManager()
     
+    
+//    private var exchangeRates = [ExchangeRateParseObject]()
     private var exchangeRate: ExchangeRateParseObject? {
         didSet {
             guard let exchangeRate = exchangeRate else {
+                DispatchQueue.main.async {
+                    self.saveButton?.isEnabled = false
+                    self.exchangeRateButton?.setTitle("$/Base",
+                        for: .normal)
+                    self.exchangeRateLabel?.text = "0.00"
+                }
                 return
             }
             
             // update UI
             DispatchQueue.main.async {
+                self.saveButton?.isEnabled = true
                 self.exchangeRateButton?.setTitle("\(exchangeRate.numberatorCurrencyAbriviation)/\(exchangeRate.denominatorCurrencyAbriviation)",
                     for: .normal)
                 
@@ -83,8 +93,10 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     @IBAction func saveButtonTapped(_ sender: Any)
     {
-        // add current Exchange Model to datasource and reload tableView
-        // ToDo Pin current exchange rate
+//        if let exchangeRate = exchangeRate {
+//            exchangeRates.append(exchangeRate)
+//            exchangeRate.pinInBackground()
+//        }
         
     }
     
