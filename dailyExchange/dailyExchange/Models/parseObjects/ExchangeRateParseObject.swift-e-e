@@ -10,21 +10,24 @@ import UIKit
 import Parse
 
 class ExchangeRateParseObject: PFObject, PFSubclassing {
-    let timestamp: Int
-    let numberatorCurrencyAbriviation: String
-    let denominatorCurrencyAbriviation: String
-    let rate: Double
+    // Note we cannot override PFObject's init method (this will cause the app to throw an exception)
+    // We use a convience init instead, but that means we can't have let properties so we have implicitly
+    // unwrapped optional var properties with private setters instead 
+    private(set) var timestamp: Int!
+    private(set) var  numberatorCurrencyAbriviation: String!
+    private(set) var  denominatorCurrencyAbriviation: String!
+    private(set) var  rate: Double!
     
     static func parseClassName() -> String {
         return "ExchangeRateParseObject"
     }
     
-    init(jsonMapping: ExchangeRateJsonMapping) {
+    convenience init(jsonMapping: ExchangeRateJsonMapping) {
+        self.init()
         timestamp = jsonMapping.timestamp
         numberatorCurrencyAbriviation = jsonMapping.numberatorCurrencyAbriviation
         denominatorCurrencyAbriviation = jsonMapping.denominatorCurrencyAbriviation
         rate = jsonMapping.rate
-        super.init()
     }
     
     // ToDO override == operator 
