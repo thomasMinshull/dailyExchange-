@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Parse
 
 class MainViewController: UIViewController, UITableViewDelegate, UITableViewDataSource
 {
@@ -20,7 +21,7 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     private let networkManager = NetworkManager()
     
     
-//    private var exchangeRates = [ExchangeRateParseObject]()
+    private var exchangeRates = [ExchangeRateParseObject]()
     private var exchangeRate: ExchangeRateParseObject? {
         didSet {
             guard let exchangeRate = exchangeRate else {
@@ -47,6 +48,7 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         }
     }
 
+    // MARK: - LifeCycle Methods
     
     override func viewDidLoad()
     {
@@ -67,6 +69,17 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
                 print("\(error)") // TODO look into what error's are thrown here and what can be done 
             }
         }
+        
+        let query = PFQuery(className: ExchangeRateParseObject.parseClassName())
+        query.fromLocalDatastore()
+        query.findObjectsInBackground { (exchangeRates, error) in
+            guard let exchangeRates = exchangeRates as? [ExchangeRateParseObject] else {
+                fatalError("Error occured while fetching exchangeRates: \(error!)") // ToDo handle this error properly
+            }
+            
+            self.exchangeRates = exchangeRates
+            self.exchangeRatesTableView.reloadData()
+        }
 
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(self.reloadForCurrencies(_:)),
@@ -77,6 +90,8 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     deinit {
         NotificationCenter.default.removeObserver(self, name: .didSelectCurrencies, object: nil)
     }
+    
+    
     // MARK: - Actions
     
     @IBAction func exchangeRateButtonTapped(_ sender: Any)
@@ -93,11 +108,15 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     @IBAction func saveButtonTapped(_ sender: Any)
     {
-//        if let exchangeRate = exchangeRate {
-//            exchangeRates.append(exchangeRate)
-//            exchangeRate.pinInBackground()
-//        }
-        
+        if let exchangeRate = exchangeRate {
+            exchangeRates.append(exchangeRate)
+            exchangeRate.pinInBackground { (success, error) in
+                guard success else {
+                    fatalError("Error occured when saving: \(error!)") // ToDo handle this error properly
+                }
+                self.exchangeRates.append(exchangeRate)
+            }
+        }
     }
     
     // MARK: - Notification Methods
@@ -117,7 +136,7 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
-        return 1 // temp value
+        return exchangeRates.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell

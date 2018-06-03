@@ -29,6 +29,7 @@
 		557691BE204E0A700097CCF7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 557691BD204E0A700097CCF7 /* Assets.xcassets */; };
 		557691C1204E0A700097CCF7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 557691BF204E0A700097CCF7 /* LaunchScreen.storyboard */; };
 		557691CC204E0A700097CCF7 /* dailyExchangeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 557691CB204E0A700097CCF7 /* dailyExchangeTests.swift */; };
+		557B4EFE20C33722000F0CFD /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 557B4EFD20C33722000F0CFD /* libsqlite3.tbd */; };
 		55C065AF2057A88D009ABAF4 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 55C065AE2057A88D009ABAF4 /* Login.storyboard */; };
 		55C065B120587F7F009ABAF4 /* Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55C065B020587F7F009ABAF4 /* Notifications.swift */; };
 		55C8190420818112000706BB /* FileReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55C8190320818112000706BB /* FileReader.swift */; };
@@ -79,6 +80,7 @@
 		557691C7204E0A700097CCF7 /* dailyExchangeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = dailyExchangeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		557691CB204E0A700097CCF7 /* dailyExchangeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = dailyExchangeTests.swift; sourceTree = "<group>"; };
 		557691CD204E0A700097CCF7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		557B4EFD20C33722000F0CFD /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		55C065AE2057A88D009ABAF4 /* Login.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
 		55C065B020587F7F009ABAF4 /* Notifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notifications.swift; sourceTree = "<group>"; };
 		55C8190320818112000706BB /* FileReader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileReader.swift; sourceTree = "<group>"; };
@@ -100,6 +102,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				557B4EFE20C33722000F0CFD /* libsqlite3.tbd in Frameworks */,
 				255E39C4843636F62EEC5381 /* Pods_dailyExchange.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -275,6 +278,7 @@
 		E4771656B5241417D16AFCCA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				557B4EFD20C33722000F0CFD /* libsqlite3.tbd */,
 				56F94973C6F49D846316749B /* Pods_dailyExchange.framework */,
 				83B31008FD3752651DC709BA /* Pods_dailyExchangeTests.framework */,
 			);
