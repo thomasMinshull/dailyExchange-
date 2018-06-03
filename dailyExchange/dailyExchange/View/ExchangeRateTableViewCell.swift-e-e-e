@@ -13,8 +13,13 @@ class ExchangeRateTableViewCell: UITableViewCell {
     @IBOutlet var denominatorLabel: UILabel!
     @IBOutlet var notificationSwitch: UISwitch!
     
-    @IBAction func notificationSwitchToggled(_ sender: Any) {
+    func configure(with exchangeRate: ExchangeRateParseObject) {
+        numeratorLabel.text = exchangeRate.numberatorCurrencyAbriviation
+        denominatorLabel.text = exchangeRate.denominatorCurrencyAbriviation
+        // notificationSwitch.isOn = exchangeRate.shouldHaveSomeValueHereToToggle // ToDo 
     }
     
-
+    @IBAction func notificationSwitchToggled(_ sender: Any) {
+        
+    }
 }

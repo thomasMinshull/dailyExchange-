@@ -150,8 +150,10 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "ExchangeRateTableViewCell", for: indexPath)
-        return cell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "ExchangeRateTableViewCell", for: indexPath) as? ExchangeRateTableViewCell
+        
+        cell?.configure(with: exchangeRates[indexPath.row])
+        return cell!
     }
 
 }
