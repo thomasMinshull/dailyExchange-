@@ -29,6 +29,4 @@ class ExchangeRateParseObject: PFObject, PFSubclassing {
         denominatorCurrencyAbriviation = jsonMapping.denominatorCurrencyAbriviation
         rate = jsonMapping.rate
     }
-    
-    // ToDO override == operator 
 }

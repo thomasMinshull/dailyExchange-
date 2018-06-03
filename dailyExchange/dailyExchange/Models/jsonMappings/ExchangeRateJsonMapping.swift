@@ -44,8 +44,8 @@ struct ExchangeRateJsonMapping: Decodable {
         
         let nestedContainer = try container.nestedContainer(keyedBy: DynamicCodingKey.self, forKey: .quotes)
         let numberatorCurrencyKey = nestedContainer.allKeys.first!
-        
-        numberatorCurrencyAbriviation = numberatorCurrencyKey.stringValue
+        let fullCurrencyString = numberatorCurrencyKey.stringValue
+        numberatorCurrencyAbriviation = String (fullCurrencyString[fullCurrencyString.index(fullCurrencyString.endIndex, offsetBy: -3)..<fullCurrencyString.endIndex])
         rate = try nestedContainer.decode(Double.self, forKey: numberatorCurrencyKey)
     }
 }

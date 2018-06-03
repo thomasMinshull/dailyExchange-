@@ -24,7 +24,9 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     private var exchangeRates = [ExchangeRateParseObject]()
     private var exchangeRate: ExchangeRateParseObject? {
         didSet {
-            guard let exchangeRate = exchangeRate else {
+            guard let exchangeRate = exchangeRate,
+                let numberatorAbriviation = exchangeRate.numberatorCurrencyAbriviation,
+                let denominatorAbriviation = exchangeRate.denominatorCurrencyAbriviation else {
                 DispatchQueue.main.async {
                     self.saveButton?.isEnabled = false
                     self.exchangeRateButton?.setTitle("$/Base",
@@ -36,8 +38,12 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
             
             // update UI
             DispatchQueue.main.async {
-                self.saveButton?.isEnabled = true
-                self.exchangeRateButton?.setTitle("\(exchangeRate.numberatorCurrencyAbriviation)/\(exchangeRate.denominatorCurrencyAbriviation)",
+                self.saveButton?.isEnabled = !self.exchangeRates.contains(where: { (savedExchangeRate) -> Bool in
+                    return savedExchangeRate.denominatorCurrencyAbriviation == exchangeRate.denominatorCurrencyAbriviation &&
+                    savedExchangeRate.numberatorCurrencyAbriviation == exchangeRate.numberatorCurrencyAbriviation
+                })
+                
+                self.exchangeRateButton?.setTitle("\(numberatorAbriviation) / \(denominatorAbriviation)",
                     for: .normal)
                 
                 // ToDo the number of decimal places should be a function of the base currency // https://stackoverflow.com/questions/2701301/various-countrys-currency-decimal-places-width-in-the-iphone-sdk
@@ -109,12 +115,15 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     @IBAction func saveButtonTapped(_ sender: Any)
     {
         if let exchangeRate = exchangeRate {
-            exchangeRates.append(exchangeRate)
             exchangeRate.pinInBackground { (success, error) in
                 guard success else {
                     fatalError("Error occured when saving: \(error!)") // ToDo handle this error properly
                 }
-                self.exchangeRates.append(exchangeRate)
+                DispatchQueue.main.async {
+                    self.exchangeRates.append(exchangeRate)
+                    self.exchangeRatesTableView.reloadData()
+                    self.saveButton.isEnabled = false
+                }
             }
         }
     }
