@@ -24,9 +24,7 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     private var exchangeRates = [ExchangeRateParseObject]()
     private var exchangeRate: ExchangeRateParseObject? {
         didSet {
-            guard let exchangeRate = exchangeRate,
-                let numberatorAbriviation = exchangeRate.numberatorCurrencyAbriviation,
-                let denominatorAbriviation = exchangeRate.denominatorCurrencyAbriviation else {
+            guard let exchangeRate = exchangeRate else {
                 DispatchQueue.main.async {
                     self.saveButton?.isEnabled = false
                     self.exchangeRateButton?.setTitle("$/Base",
@@ -43,11 +41,11 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
                     savedExchangeRate.numberatorCurrencyAbriviation == exchangeRate.numberatorCurrencyAbriviation
                 })
                 
-                self.exchangeRateButton?.setTitle("\(numberatorAbriviation) / \(denominatorAbriviation)",
+                self.exchangeRateButton?.setTitle("\(exchangeRate.numberatorCurrencyAbriviation) / \(exchangeRate.denominatorCurrencyAbriviation)",
                     for: .normal)
                 
                 // ToDo the number of decimal places should be a function of the base currency // https://stackoverflow.com/questions/2701301/various-countrys-currency-decimal-places-width-in-the-iphone-sdk
-                
+
                 let formatedRate = String(format: "%.2f", exchangeRate.rate)
                 self.exchangeRateLabel?.text = formatedRate
             }
@@ -76,17 +74,27 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
             }
         }
         
-        let query = PFQuery(className: ExchangeRateParseObject.parseClassName())
+        let query = ExchangeRateParseObject.query()!
         query.fromLocalDatastore()
-        query.findObjectsInBackground { (exchangeRates, error) in
-            guard let exchangeRates = exchangeRates as? [ExchangeRateParseObject] else {
-                fatalError("Error occured while fetching exchangeRates: \(error!)") // ToDo handle this error properly
+        query.findObjectsInBackground().continueWith { (task) -> Any? in
+            guard task.error == nil else {
+                print("An error occured fetching from local store; \(task.error!)")
+                return nil 
             }
             
-            self.exchangeRates = exchangeRates
-            self.exchangeRatesTableView.reloadData()
+            guard let exchangeRates = task.result as?  [ExchangeRateParseObject] else {
+                 print("Unable to fetch an aray of ExchangeRateParseObjects from local store")
+                return nil
+            }
+            
+            DispatchQueue.main.async {
+                self.exchangeRates = exchangeRates
+                self.exchangeRatesTableView.reloadData()
+            }
+            
+            return nil
         }
-
+        
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(self.reloadForCurrencies(_:)),
                                                name: .didSelectCurrencies,
@@ -115,14 +123,17 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     @IBAction func saveButtonTapped(_ sender: Any)
     {
         if let exchangeRate = exchangeRate {
-            exchangeRate.pinInBackground { (success, error) in
+            self.saveButton.isEnabled = false
+            
+            exchangeRate.saveEventually { (success, error) in
                 guard success else {
-                    fatalError("Error occured when saving: \(error!)") // ToDo handle this error properly
+                    print("An error occured while saving exchangeRate: \(error!)")
+                    return
                 }
+                
                 DispatchQueue.main.async {
                     self.exchangeRates.append(exchangeRate)
                     self.exchangeRatesTableView.reloadData()
-                    self.saveButton.isEnabled = false
                 }
             }
         }

@@ -30,8 +30,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate
                                                selector: #selector(loadLoginStoryboard),
                                                name: Notification.Name.didLogout,
                                                object: nil)
-        
-        Parse.enableLocalDatastore()
+        _ = registerParseSubclasses
         
         let configuration = ParseClientConfiguration
         {
@@ -50,8 +49,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate
         {   // user needs to login
             loadLoginStoryboard()
         }
-        
-        _ = registerParseSubclasses
         
         return true
     }
