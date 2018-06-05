@@ -12,6 +12,8 @@ class SignInViewController: UIViewController
 {
     @IBOutlet var emailTextField: UITextField!
     @IBOutlet var passwordTextField: UITextField!
+    @IBOutlet var signInButton: UIButton!
+    @IBOutlet var activityIndicator: UIActivityIndicatorView!
     
     @IBAction func signInButtonTapped(_ sender: Any)
     {
@@ -24,17 +26,25 @@ class SignInViewController: UIViewController
             let password = passwordTextField.text,
             emailResponse.0
         {
-            do
-            {
-                try User.logIn(withUsername: email, password: password)
-
+            signInButton.isEnabled = false
+            activityIndicator.startAnimating()
+            
+            User.logInWithUsername(inBackground: email, password: password) { (user, error) in
+                defer {
+                    self.signInButton.isEnabled = true
+                    self.activityIndicator.stopAnimating()
+                }
+                
+                guard error == nil else {
+                    let alert = UIAlertController(title: "Login failed", message: "Please check your network connection and try again", preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                    self.present(alert, animated: true, completion: nil)
+                   
+                    return
+                }
+                
                 let notificationCenter = NotificationCenter.default
                 notificationCenter.post(name: Notification.Name.didLogIn, object: nil)
-            } catch
-            {
-                let alert = UIAlertController(title: "Login failed", message: "Please check your network connection and try again", preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-                self.present(alert, animated: true, completion: nil)
             }
             
         } else if let message = passwordResponse.1,

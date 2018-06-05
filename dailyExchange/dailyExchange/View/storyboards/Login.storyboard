@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="xiI-oi-Yog">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14111" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="xiI-oi-Yog">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -29,9 +30,7 @@
                                 <rect key="frame" x="164" y="617" width="47" height="30"/>
                                 <state key="normal" title="Sign In"/>
                                 <connections>
-                                    <segue destination="1tg-9Q-ynd" kind="show" identifier="SignUpToSignIn" id="p0x-y6-SrM">
-                                        <nil key="action"/>
-                                    </segue>
+                                    <segue destination="1tg-9Q-ynd" kind="show" identifier="SignUpToSignIn" id="p0x-y6-SrM"/>
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cLs-wf-BLm">
@@ -41,13 +40,13 @@
                                         <rect key="frame" x="8" y="8" width="265.5" height="30"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" textContentType="email"/>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="X6x-p5-zH8">
                                         <rect key="frame" x="8" y="46" width="265.5" height="30"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" textContentType="password"/>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xlB-uh-Gp8">
                                         <rect key="frame" x="8" y="88" width="265.5" height="30"/>
@@ -73,22 +72,32 @@
                                     <constraint firstItem="xlB-uh-Gp8" firstAttribute="trailing" secondItem="X6x-p5-zH8" secondAttribute="trailing" id="xxm-8T-66P"/>
                                 </constraints>
                             </view>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="2hg-8t-xgB">
+                                <rect key="frame" x="177" y="333.5" width="20" height="20"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="2hg-8t-xgB" secondAttribute="height" multiplier="1:1" id="lKN-LS-VJw"/>
+                                </constraints>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="IZo-ow-vhg" firstAttribute="top" secondItem="eqX-c5-XqB" secondAttribute="top" id="3xL-SG-m4D"/>
                             <constraint firstItem="cLs-wf-BLm" firstAttribute="width" secondItem="xSD-5z-ZDQ" secondAttribute="width" multiplier="3:4" id="Ap8-po-Udi"/>
+                            <constraint firstItem="2hg-8t-xgB" firstAttribute="centerY" secondItem="eqX-c5-XqB" secondAttribute="centerY" id="I9z-Zc-lQj"/>
                             <constraint firstItem="eqX-c5-XqB" firstAttribute="bottom" secondItem="Zar-co-46T" secondAttribute="bottom" constant="20" id="RAL-Qo-hml"/>
                             <constraint firstItem="IZo-ow-vhg" firstAttribute="centerX" secondItem="eqX-c5-XqB" secondAttribute="centerX" id="S3G-cD-ZbX"/>
                             <constraint firstItem="Zar-co-46T" firstAttribute="centerX" secondItem="eqX-c5-XqB" secondAttribute="centerX" id="SCl-MT-n0P"/>
                             <constraint firstItem="cLs-wf-BLm" firstAttribute="centerX" secondItem="eqX-c5-XqB" secondAttribute="centerX" id="YGd-t9-oEL"/>
+                            <constraint firstItem="2hg-8t-xgB" firstAttribute="centerX" secondItem="eqX-c5-XqB" secondAttribute="centerX" id="cJM-hO-u2r"/>
                             <constraint firstItem="cLs-wf-BLm" firstAttribute="centerY" secondItem="eqX-c5-XqB" secondAttribute="centerY" id="xfM-5x-3dG"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="eqX-c5-XqB"/>
                     </view>
                     <connections>
+                        <outlet property="activityIndicator" destination="2hg-8t-xgB" id="nqY-bV-MGs"/>
                         <outlet property="emailTextField" destination="INu-AQ-IV1" id="1o7-iY-uie"/>
                         <outlet property="passwordTextField" destination="X6x-p5-zH8" id="zMS-Fl-RWU"/>
+                        <outlet property="signUpButton" destination="xlB-uh-Gp8" id="89k-RZ-8xa"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3QF-Sz-SVB" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -110,13 +119,13 @@
                                         <rect key="frame" x="8" y="8" width="265.5" height="30"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" textContentType="email"/>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Dw7-bD-heM">
                                         <rect key="frame" x="8" y="46" width="265.5" height="30"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" textContentType="password"/>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wu1-8j-knV">
                                         <rect key="frame" x="8" y="88" width="265.5" height="30"/>
@@ -155,6 +164,9 @@
                                     <action selector="signUpButtonTapped:" destination="1tg-9Q-ynd" eventType="touchUpInside" id="P9I-ne-vif"/>
                                 </connections>
                             </button>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="DOd-4x-80e">
+                                <rect key="frame" x="177" y="333.5" width="20" height="20"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -165,12 +177,16 @@
                             <constraint firstItem="OYx-fy-Zmw" firstAttribute="centerX" secondItem="P11-Kf-FHb" secondAttribute="centerX" id="JUj-ps-YLN"/>
                             <constraint firstItem="0gl-DI-F02" firstAttribute="width" secondItem="NQ6-CE-asG" secondAttribute="width" multiplier="3:4" id="MSB-5w-gCa"/>
                             <constraint firstItem="0gl-DI-F02" firstAttribute="centerY" secondItem="P11-Kf-FHb" secondAttribute="centerY" id="caB-Fl-etu"/>
+                            <constraint firstItem="DOd-4x-80e" firstAttribute="centerY" secondItem="P11-Kf-FHb" secondAttribute="centerY" id="l7d-Xr-gGR"/>
+                            <constraint firstItem="DOd-4x-80e" firstAttribute="centerX" secondItem="P11-Kf-FHb" secondAttribute="centerX" id="laN-7A-mWz"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="P11-Kf-FHb"/>
                     </view>
                     <connections>
+                        <outlet property="activityIndicator" destination="DOd-4x-80e" id="l2G-bK-vbv"/>
                         <outlet property="emailTextField" destination="swP-NI-Vcd" id="3PC-ko-LN9"/>
                         <outlet property="passwordTextField" destination="Dw7-bD-heM" id="d3r-uh-BeA"/>
+                        <outlet property="signInButton" destination="wu1-8j-knV" id="tPn-7y-gFE"/>
                         <segue destination="ric-RW-glc" kind="unwind" identifier="unwindToSignUp" unwindAction="unwindToSignUpWithSegue:" id="dj4-LK-9yv"/>
                     </connections>
                 </viewController>
