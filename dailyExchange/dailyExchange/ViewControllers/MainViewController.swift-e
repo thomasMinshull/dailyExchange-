@@ -163,8 +163,34 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ExchangeRateTableViewCell", for: indexPath) as? ExchangeRateTableViewCell
         
+        cell?.delegate = self
         cell?.configure(with: exchangeRates[indexPath.row])
         return cell!
     }
+}
 
+extension MainViewController: ExchangeRateCellProtocol {
+    func notificationSwitchDidToggleFor(cell: ExchangeRateTableViewCell) {
+        if let indexPath = self.exchangeRatesTableView.indexPath(for: cell as UITableViewCell),
+            indexPath.row > 0 && indexPath.row < exchangeRates.count
+        {
+            let exchangeRate = exchangeRates[(indexPath.row)]
+            exchangeRate.notificationsEnabled = !exchangeRate.notificationsEnabled
+            exchangeRate.saveEventually { (success, error) in
+                if let error = error {
+                    print("Error occured when updatingNotificationsEnabled for exchangeRate, error: \(error)")
+                }
+                if success {
+                    print("Successfully updated notificationEnabled Status")
+                    self.exchangeRatesTableView.reloadRows(at: [indexPath], with: .automatic)
+                } else {
+                    exchangeRate.notificationsEnabled = !exchangeRate.notificationsEnabled
+                    self.exchangeRatesTableView.reloadRows(at: [indexPath], with: .automatic)
+                }
+            }
+        }
+        
+    }
+    
+    
 }

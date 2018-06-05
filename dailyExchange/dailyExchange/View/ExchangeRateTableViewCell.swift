@@ -8,7 +8,12 @@
 
 import UIKit
 
+protocol ExchangeRateCellProtocol: class {
+    func notificationSwitchDidToggleFor(cell: ExchangeRateTableViewCell)
+}
+
 class ExchangeRateTableViewCell: UITableViewCell {
+    weak var delegate: ExchangeRateCellProtocol?
     @IBOutlet var numeratorLabel: UILabel!
     @IBOutlet var denominatorLabel: UILabel!
     @IBOutlet var notificationSwitch: UISwitch!
@@ -16,10 +21,12 @@ class ExchangeRateTableViewCell: UITableViewCell {
     func configure(with exchangeRate: ExchangeRateParseObject) {
         numeratorLabel.text = exchangeRate.numberatorCurrencyAbriviation
         denominatorLabel.text = exchangeRate.denominatorCurrencyAbriviation
-        // notificationSwitch.isOn = exchangeRate.shouldHaveSomeValueHereToToggle // ToDo 
+        notificationSwitch.isOn = exchangeRate.notificationsEnabled
     }
     
     @IBAction func notificationSwitchToggled(_ sender: Any) {
-        
+        if let delegate = delegate {
+            delegate.notificationSwitchDidToggleFor(cell: self)
+        }
     }
 }

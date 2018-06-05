@@ -11,9 +11,10 @@ import Parse
 
 class ExchangeRateParseObject: PFObject, PFSubclassing {
     @NSManaged var timestamp: Int
-    @NSManaged var  numberatorCurrencyAbriviation: String
-    @NSManaged var  denominatorCurrencyAbriviation: String
-    @NSManaged var  rate: Double
+    @NSManaged var numberatorCurrencyAbriviation: String
+    @NSManaged var denominatorCurrencyAbriviation: String
+    @NSManaged var rate: Double
+    @NSManaged var notificationsEnabled: Bool
     
     static func parseClassName() -> String {
         return "ExchangeRateParseObject"
@@ -25,5 +26,6 @@ class ExchangeRateParseObject: PFObject, PFSubclassing {
         numberatorCurrencyAbriviation = jsonMapping.numberatorCurrencyAbriviation
         denominatorCurrencyAbriviation = jsonMapping.denominatorCurrencyAbriviation
         rate = jsonMapping.rate
+        notificationsEnabled = true
     }
 }
