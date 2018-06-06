@@ -152,6 +152,13 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         }
     }
     
+    // MARK: - UITableViewDelegate
+    
+    public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let selectedExchangeRate = exchangeRates[indexPath.row]
+        exchangeRate = selectedExchangeRate
+    }
+    
     // MARK: - UITableViewDataSource
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
