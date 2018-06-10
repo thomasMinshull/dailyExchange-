@@ -60,19 +60,7 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         self.exchangeRatesTableView.dataSource = self
         self.exchangeRatesTableView.delegate = self
         
-        fileReader.fetchCurrencyListInBackground { (data) in
-            do {
-                let jsonDecoder = JSONDecoder()
-                let listWrapper = try jsonDecoder.decode(CurrencyListJsonMapping.self, from: data)
-                self.currencyList = listWrapper.currencies
-                
-                DispatchQueue.main.async {
-                    self.exchangeRatesTableView.reloadData()
-                }
-            } catch {
-                print("\(error)") // TODO look into what error's are thrown here and what can be done 
-            }
-        }
+        setupCurrencyList()
         
         let query = ExchangeRateParseObject.query()!
         query.whereKey("user", equalTo: PFUser.current())
@@ -105,6 +93,23 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         NotificationCenter.default.removeObserver(self, name: .didSelectCurrencies, object: nil)
     }
     
+    // MARK: - Helpers
+    
+    func setupCurrencyList() {
+        fileReader.fetchCurrencyListInBackground { (data) in
+            do {
+                let jsonDecoder = JSONDecoder()
+                let listWrapper = try jsonDecoder.decode(CurrencyListJsonMapping.self, from: data)
+                self.currencyList = listWrapper.currencies
+                
+                DispatchQueue.main.async {
+                    self.exchangeRatesTableView.reloadData()
+                }
+            } catch {
+                print("\(error)") // TODO look into what error's are thrown here and what can be done
+            }
+        }
+    }
     
     // MARK: - Actions
     
