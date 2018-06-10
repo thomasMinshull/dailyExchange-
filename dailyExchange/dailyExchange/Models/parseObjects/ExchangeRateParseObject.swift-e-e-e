@@ -15,6 +15,7 @@ class ExchangeRateParseObject: PFObject, PFSubclassing {
     @NSManaged var denominatorCurrencyAbriviation: String
     @NSManaged var rate: Double
     @NSManaged var notificationsEnabled: Bool
+    @NSManaged var user: PFUser?
     
     static func parseClassName() -> String {
         return "ExchangeRateParseObject"

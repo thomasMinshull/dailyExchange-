@@ -75,7 +75,7 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         }
         
         let query = ExchangeRateParseObject.query()!
-        query.fromLocalDatastore()
+        query.whereKey("user", equalTo: PFUser.current())
         query.findObjectsInBackground().continueWith { (task) -> Any? in
             guard task.error == nil else {
                 print("An error occured fetching from local store; \(task.error!)")
@@ -92,7 +92,7 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
                 self.exchangeRatesTableView.reloadData()
             }
             
-            return nil
+            return nil // if htis fails we should pin on a hit to the local store
         }
         
         NotificationCenter.default.addObserver(self,
@@ -124,7 +124,9 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     {
         if let exchangeRate = exchangeRate {
             self.saveButton.isEnabled = false
+            exchangeRate.user = PFUser.current()
             
+            // should have pinning (save eventually on pins
             exchangeRate.saveEventually { (success, error) in
                 guard success else {
                     print("An error occured while saving exchangeRate: \(error!)")
@@ -196,8 +198,5 @@ extension MainViewController: ExchangeRateCellProtocol {
                 }
             }
         }
-        
     }
-    
-    
 }
