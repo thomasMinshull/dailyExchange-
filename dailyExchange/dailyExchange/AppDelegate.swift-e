@@ -34,9 +34,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate
         
         let configuration = ParseClientConfiguration
         {
-            $0.applicationId = "PARSEAPIKEY"
-            $0.clientKey = "CLIENTKEY"
-            $0.server = "https://parseapi.back4app.com"
+            $0.applicationId = APPLICATION_ID
+            $0.clientKey = MASTER_KEY
+            $0.server = SERVER
             $0.isLocalDatastoreEnabled = true
         }
         
