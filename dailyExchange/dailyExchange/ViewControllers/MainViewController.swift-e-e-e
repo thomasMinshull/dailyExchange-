@@ -120,9 +120,10 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
             exchangeRate.user = PFUser.current()
             
             // should have pinning (save eventually on pins
-            exchangeRate.saveEventually { (success, error) in
+            exchangeRate.isSavedOnServer = false
+            exchangeRate.pinInBackground { (success, error) in
                 guard success else {
-                    print("An error occured while saving exchangeRate: \(error!)")
+                    print("An error occured while pinning after initially adding it exchangeRate: \(error!)")
                     return
                 }
                 
@@ -130,6 +131,17 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
                     self.exchangeRates.append(exchangeRate)
                     self.exchangeRatesTableView.reloadData()
                 }
+                
+                exchangeRate.saveEventually({ (success, error) in
+                    guard success else {
+                        print("An error occured while saving exchangeRate: \(error!)")
+                        return
+                    }
+                    
+                    exchangeRate.isSavedOnServer = true
+                    exchangeRate.pinInBackground()
+                })
+                
             }
         }
     }
@@ -174,20 +186,34 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
 extension MainViewController: ExchangeRateCellProtocol {
     func notificationSwitchDidToggleFor(cell: ExchangeRateTableViewCell) {
         if let indexPath = self.exchangeRatesTableView.indexPath(for: cell as UITableViewCell),
-            indexPath.row > 0 && indexPath.row < exchangeRates.count
+            indexPath.row >= 0 && indexPath.row < exchangeRates.count
         {
             let exchangeRate = exchangeRates[(indexPath.row)]
             exchangeRate.notificationsEnabled = !exchangeRate.notificationsEnabled
-            exchangeRate.saveEventually { (success, error) in
-                if let error = error {
-                    print("Error occured when updatingNotificationsEnabled for exchangeRate, error: \(error)")
-                }
-                if success {
-                    print("Successfully updated notificationEnabled Status")
-                    self.exchangeRatesTableView.reloadRows(at: [indexPath], with: .automatic)
-                } else {
+            exchangeRate.isSavedOnServer = false
+            
+            exchangeRate.pinInBackground { (success, error) in
+                guard success else {
+                    if let error = error {
+                        print("Exchange Rate: \(exchangeRate) notificationEnabled status toogled, but not saved to save locally do to error; \(error)")
+                    }
+                    // if failed to pin to background we want to toggle back and update UI
                     exchangeRate.notificationsEnabled = !exchangeRate.notificationsEnabled
-                    self.exchangeRatesTableView.reloadRows(at: [indexPath], with: .automatic)
+                    DispatchQueue.main.async {
+                        self.exchangeRatesTableView.reloadRows(at: [indexPath], with: .automatic)                        
+                    }
+                    return
+                }
+                
+                if success {
+                    exchangeRate.saveEventually({(success, error) in
+                        if success {
+                            exchangeRate.isSavedOnServer = true
+                            exchangeRate.pinInBackground()
+                        } else {
+                            print("Exchange Rate: \(exchangeRate) notificationEnabled status toogled, but not saved to server do to error: \(error!)")
+                        }
+                    })
                 }
             }
         }
