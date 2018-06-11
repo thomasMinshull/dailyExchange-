@@ -19,6 +19,7 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     private let fileReader = FileReader()
     private var currencyList: [CurrencyJsonMapping]?
     private let networkManager = NetworkManager()
+    private let exchangeRateImporter = ExchangeRateParseObjectImporter()
     
     
     private var exchangeRates = [ExchangeRateParseObject]()
@@ -28,7 +29,7 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
                 DispatchQueue.main.async {
                     self.saveButton?.isEnabled = false
                     self.exchangeRateButton?.setTitle("$/Base",
-                        for: .normal)
+                                                      for: .normal)
                     self.exchangeRateLabel?.text = "0.00"
                 }
                 return
@@ -38,20 +39,20 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
             DispatchQueue.main.async {
                 self.saveButton?.isEnabled = !self.exchangeRates.contains(where: { (savedExchangeRate) -> Bool in
                     return savedExchangeRate.denominatorCurrencyAbriviation == exchangeRate.denominatorCurrencyAbriviation &&
-                    savedExchangeRate.numberatorCurrencyAbriviation == exchangeRate.numberatorCurrencyAbriviation
+                        savedExchangeRate.numberatorCurrencyAbriviation == exchangeRate.numberatorCurrencyAbriviation
                 })
                 
                 self.exchangeRateButton?.setTitle("\(exchangeRate.numberatorCurrencyAbriviation) / \(exchangeRate.denominatorCurrencyAbriviation)",
                     for: .normal)
                 
                 // ToDo the number of decimal places should be a function of the base currency // https://stackoverflow.com/questions/2701301/various-countrys-currency-decimal-places-width-in-the-iphone-sdk
-
+                
                 let formatedRate = String(format: "%.2f", exchangeRate.rate)
                 self.exchangeRateLabel?.text = formatedRate
             }
         }
     }
-
+    
     // MARK: - LifeCycle Methods
     
     override func viewDidLoad()
@@ -62,26 +63,13 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         setupCurrencyList()
         
-        let query = ExchangeRateParseObject.query()!
-        query.whereKey("user", equalTo: PFUser.current())
-        query.findObjectsInBackground().continueWith { (task) -> Any? in
-            guard task.error == nil else {
-                print("An error occured fetching from local store; \(task.error!)")
-                return nil 
-            }
-            
-            guard let exchangeRates = task.result as?  [ExchangeRateParseObject] else {
-                 print("Unable to fetch an aray of ExchangeRateParseObjects from local store")
-                return nil
-            }
-            
+        self.exchangeRateImporter.fetchExchangeRateParseObjectsWithCompletion { (exchangeRates) in
             DispatchQueue.main.async {
                 self.exchangeRates = exchangeRates
                 self.exchangeRatesTableView.reloadData()
             }
-            
-            return nil // if htis fails we should pin on a hit to the local store
         }
+        
         
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(self.reloadForCurrencies(_:)),

@@ -56,7 +56,6 @@ struct CurrencyURLGenerator {
 
 class NetworkManager {
     
-    
     func exchangeRateforCurrency(_ currency: CurrencyJsonMapping, with base: CurrencyJsonMapping, completion: @escaping (ExchangeRateParseObject) -> ()) {
         
         let params: [CurrencyURLGenerator.QueryKey: String] = [

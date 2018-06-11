@@ -16,6 +16,7 @@ class ExchangeRateParseObject: PFObject, PFSubclassing {
     @NSManaged var rate: Double
     @NSManaged var notificationsEnabled: Bool
     @NSManaged var user: PFUser?
+    @NSManaged var isSavedOnServer: Bool
     
     static func parseClassName() -> String {
         return "ExchangeRateParseObject"
@@ -28,5 +29,6 @@ class ExchangeRateParseObject: PFObject, PFSubclassing {
         denominatorCurrencyAbriviation = jsonMapping.denominatorCurrencyAbriviation
         rate = jsonMapping.rate
         notificationsEnabled = true
+        isSavedOnServer = false
     }
 }
