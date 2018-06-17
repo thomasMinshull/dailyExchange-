@@ -8,6 +8,7 @@
 
 import UIKit
 import Parse
+import UserNotifications
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate
@@ -49,6 +50,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate
         {   // user needs to login
             loadLoginStoryboard()
         }
+        
+        registerForPushNotifications()
         
         return true
     }
@@ -96,6 +99,49 @@ class AppDelegate: UIResponder, UIApplicationDelegate
         NotificationCenter.default.removeObserver(self,
                                                   name: Notification.Name.didLogout,
                                                   object: nil)
+    }
+    
+    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+        let tokenParts = deviceToken.map { data -> String in
+            return String(format: "%02.2hhx", data)
+        }
+        
+        let token = tokenParts.joined()
+        print("Device Token: \(token)")
+        
+        let installation = PFInstallation.current()
+        installation?.setDeviceTokenFrom(deviceToken)
+        installation?.saveInBackground()
+        
+    }
+    
+    func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
+        print("Failed to register: \(error)")
+    }
+    
+    // MARK: - Helper Methods
+    
+    private func registerForPushNotifications() {
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge ,.sound]) { (success, error) in
+            guard error == nil else {
+                print("Error occured while requesting Authorization for Push Notifications: \(error!)")
+                return
+            }
+            if (success) {
+                print("Push Notification Access Granted")
+                self.getNotificationSettings()
+            } else {
+                print("Push Notification Access Denied")
+            }
+        }
+    }
+    
+    func getNotificationSettings() {
+        UNUserNotificationCenter.current().getNotificationSettings { (settings) in
+            print("Notification settings: \(settings)")
+            guard settings.authorizationStatus == .authorized else { return }
+            UIApplication.shared.registerForRemoteNotifications()
+        }
     }
     
     @objc private func loadLoginStoryboard()

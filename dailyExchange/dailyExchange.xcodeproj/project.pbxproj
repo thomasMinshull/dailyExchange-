@@ -56,6 +56,7 @@
 
 /* Begin PBXFileReference section */
 		55244D8420C0BA2F00E0FAB9 /* ExchangeRateParseObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeRateParseObject.swift; sourceTree = "<group>"; };
+		553E5E8F20D0D65A0008E039 /* dailyExchange.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = dailyExchange.entitlements; sourceTree = "<group>"; };
 		55452E4C204E0FCB00658D6D /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		55452E4E204E0FDD00658D6D /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		55452E50204E0FF600658D6D /* ChartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartViewController.swift; sourceTree = "<group>"; };
@@ -210,6 +211,7 @@
 		557691B5204E0A700097CCF7 /* dailyExchange */ = {
 			isa = PBXGroup;
 			children = (
+				553E5E8F20D0D65A0008E039 /* dailyExchange.entitlements */,
 				557691B6204E0A700097CCF7 /* AppDelegate.swift */,
 				55452E80204E286900658D6D /* Keys.swift */,
 				55F45CE42072F33200ABAE9C /* Extentions */,
@@ -353,6 +355,11 @@
 					557691B2204E0A700097CCF7 = {
 						CreatedOnToolsVersion = 9.2;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 					557691C6204E0A700097CCF7 = {
 						CreatedOnToolsVersion = 9.2;
@@ -690,6 +697,7 @@
 			baseConfigurationReference = 902F6378260AEBDA4D17F5F0 /* Pods-dailyExchange.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = dailyExchange/dailyExchange.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 7TB5DTP7UM;
 				INFOPLIST_FILE = "$(SRCROOT)/Info.plist";
@@ -706,6 +714,7 @@
 			baseConfigurationReference = 7E201AE21138C3B9B3F190B0 /* Pods-dailyExchange.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = dailyExchange/dailyExchange.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 7TB5DTP7UM;
 				INFOPLIST_FILE = "$(SRCROOT)/Info.plist";
