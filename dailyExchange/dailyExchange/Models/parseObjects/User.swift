@@ -11,5 +11,7 @@ import Parse
 
 class User: PFUser
 {
-
+    @NSManaged var issues: [Issue]
+    
+    
 }

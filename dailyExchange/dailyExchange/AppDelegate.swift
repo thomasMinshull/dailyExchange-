@@ -18,6 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate
     lazy var registerParseSubclasses: () = {
         // Lazy instanciation insures that this block of code only runs once
         ExchangeRateParseObject.registerSubclass()
+        Issue.registerSubclass()
     }()
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool
