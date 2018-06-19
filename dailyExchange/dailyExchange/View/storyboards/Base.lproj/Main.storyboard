@@ -14,7 +14,6 @@
         <!--Settings-->
         <scene sceneID="dbj-Ja-WKj">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="IHB-bc-ZL5" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="UfY-qF-KgV" customClass="SettingsViewController" customModule="dailyExchange" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="4tP-Yp-OPJ">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
@@ -53,6 +52,7 @@
                     <tabBarItem key="tabBarItem" title="Settings" id="rFl-9D-wmA" userLabel="Settings"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="IHB-bc-ZL5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="673" y="-543"/>
         </scene>
@@ -79,12 +79,17 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
+                                    <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="adS-Pz-cpC">
+                                        <rect key="frame" x="177" y="101" width="20" height="20"/>
+                                    </activityIndicatorView>
                                 </subviews>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
+                                    <constraint firstItem="adS-Pz-cpC" firstAttribute="centerX" secondItem="O9a-oh-0z9" secondAttribute="centerX" id="D1r-n9-H5J"/>
                                     <constraint firstAttribute="bottom" secondItem="O9a-oh-0z9" secondAttribute="bottom" constant="2" id="OQF-xR-axF"/>
                                     <constraint firstItem="O9a-oh-0z9" firstAttribute="top" secondItem="toM-QF-1SF" secondAttribute="top" constant="2" id="V0K-M2-nnA"/>
                                     <constraint firstAttribute="trailing" secondItem="O9a-oh-0z9" secondAttribute="trailing" constant="2" id="vyN-P2-njK"/>
+                                    <constraint firstItem="adS-Pz-cpC" firstAttribute="centerY" secondItem="O9a-oh-0z9" secondAttribute="centerY" id="yAL-ty-jX8"/>
                                     <constraint firstItem="O9a-oh-0z9" firstAttribute="leading" secondItem="toM-QF-1SF" secondAttribute="leading" constant="2" id="yZF-5K-j1W"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
@@ -102,10 +107,6 @@
                                     <action selector="cancelButtonTapped:" destination="HjF-qf-JCY" eventType="touchUpInside" id="oOm-nh-pxV"/>
                                 </connections>
                             </button>
-                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="adS-Pz-cpC">
-                                <rect key="frame" x="177" y="501" width="20" height="20"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </activityIndicatorView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rEs-eE-oil">
                                 <rect key="frame" x="232" y="271.5" width="36" height="30"/>
                                 <state key="normal" title="Send"/>
