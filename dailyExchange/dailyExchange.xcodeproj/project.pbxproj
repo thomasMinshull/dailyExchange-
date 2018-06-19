@@ -36,7 +36,6 @@
 		55C8190420818112000706BB /* FileReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55C8190320818112000706BB /* FileReader.swift */; };
 		55C8190620818D77000706BB /* CurrencyListJsonMapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55C8190520818D77000706BB /* CurrencyListJsonMapping.swift */; };
 		55CC22482060FB260025884B /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 557691C2204E0A700097CCF7 /* Info.plist */; };
-		55CC224A2061E5040025884B /* InitialTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55CC22492061E5040025884B /* InitialTabViewController.swift */; };
 		55E72CA0208447BB003AD19A /* DynamicCodingKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E72C9F208447BB003AD19A /* DynamicCodingKey.swift */; };
 		55F45CE62072F36A00ABAE9C /* VisibleViewControllerExtention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55F45CE52072F36A00ABAE9C /* VisibleViewControllerExtention.swift */; };
 		55F45CE82072F8FF00ABAE9C /* ErrorPrecentor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55F45CE72072F8FF00ABAE9C /* ErrorPrecentor.swift */; };
@@ -89,7 +88,6 @@
 		55C065B020587F7F009ABAF4 /* Notifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notifications.swift; sourceTree = "<group>"; };
 		55C8190320818112000706BB /* FileReader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileReader.swift; sourceTree = "<group>"; };
 		55C8190520818D77000706BB /* CurrencyListJsonMapping.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyListJsonMapping.swift; sourceTree = "<group>"; };
-		55CC22492061E5040025884B /* InitialTabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialTabViewController.swift; sourceTree = "<group>"; };
 		55E72C9F208447BB003AD19A /* DynamicCodingKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicCodingKey.swift; sourceTree = "<group>"; };
 		55F45CE52072F36A00ABAE9C /* VisibleViewControllerExtention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisibleViewControllerExtention.swift; sourceTree = "<group>"; };
 		55F45CE72072F8FF00ABAE9C /* ErrorPrecentor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorPrecentor.swift; sourceTree = "<group>"; };
@@ -146,7 +144,6 @@
 		55452E4B204E0F7700658D6D /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				55CC22492061E5040025884B /* InitialTabViewController.swift */,
 				55452E4C204E0FCB00658D6D /* MainViewController.swift */,
 				5531CBF420D608580053AAA8 /* ContactUsViewController.swift */,
 				554C7D8D206309CC0087ECAB /* CurrencyPickerViewController.swift */,
@@ -533,7 +530,6 @@
 				55452E87204E61FD00658D6D /* UserValidator.swift in Sources */,
 				55C8190620818D77000706BB /* CurrencyListJsonMapping.swift in Sources */,
 				554FEAAD20BB64BC000D8F06 /* ExchangeRateJsonMapping.swift in Sources */,
-				55CC224A2061E5040025884B /* InitialTabViewController.swift in Sources */,
 				55F8CB8B20CF01D10015A254 /* ExchangeRateParseObjectImporter.swift in Sources */,
 				55452E51204E0FF600658D6D /* ChartViewController.swift in Sources */,
 				554C7D8E206309CC0087ECAB /* CurrencyPickerViewController.swift in Sources */,
