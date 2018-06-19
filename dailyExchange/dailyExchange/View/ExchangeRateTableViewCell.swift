@@ -7,9 +7,10 @@
 //
 
 import UIKit
+import Parse
 
 protocol ExchangeRateCellProtocol: class {
-    func notificationSwitchDidToggleFor(cell: ExchangeRateTableViewCell)
+    func notificationSwitchDidToggleFor(cell: ExchangeRateTableViewCell, installation: PFInstallation?)
 }
 
 class ExchangeRateTableViewCell: UITableViewCell {
@@ -21,12 +22,12 @@ class ExchangeRateTableViewCell: UITableViewCell {
     func configure(with exchangeRate: ExchangeRateParseObject) {
         numeratorLabel.text = exchangeRate.numberatorCurrencyAbriviation
         denominatorLabel.text = exchangeRate.denominatorCurrencyAbriviation
-        notificationSwitch.isOn = exchangeRate.notificationsEnabled
+        notificationSwitch.isOn = exchangeRate.isNotificationEnabled()
     }
     
     @IBAction func notificationSwitchToggled(_ sender: Any) {
         if let delegate = delegate {
-            delegate.notificationSwitchDidToggleFor(cell: self)
+            delegate.notificationSwitchDidToggleFor(cell: self, installation: PFInstallation.current())
         }
     }
 }

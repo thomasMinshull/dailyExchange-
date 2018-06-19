@@ -14,9 +14,13 @@ class ExchangeRateParseObject: PFObject, PFSubclassing {
     @NSManaged var numberatorCurrencyAbriviation: String
     @NSManaged var denominatorCurrencyAbriviation: String
     @NSManaged var rate: Double
-    @NSManaged var notificationsEnabled: Bool
     @NSManaged var user: PFUser?
     @NSManaged var isSavedOnServer: Bool
+    
+    private let channelsKey = "channels"
+    private var notificationKey: String {
+        return numberatorCurrencyAbriviation + denominatorCurrencyAbriviation
+    }
     
     static func parseClassName() -> String {
         return "ExchangeRateParseObject"
@@ -28,7 +32,31 @@ class ExchangeRateParseObject: PFObject, PFSubclassing {
         numberatorCurrencyAbriviation = jsonMapping.numberatorCurrencyAbriviation
         denominatorCurrencyAbriviation = jsonMapping.denominatorCurrencyAbriviation
         rate = jsonMapping.rate
-        notificationsEnabled = true
         isSavedOnServer = false
+    }
+    
+    func isNotificationEnabled(_ installation: PFInstallation? = PFInstallation.current()) -> Bool {
+        guard let channels = installation?.object(forKey: channelsKey) as? [String] else {
+            return false
+        }
+        return channels.contains(notificationKey)
+    }
+    
+    func enableNotification(_ installation: PFInstallation? = PFInstallation.current()) {
+        installation?.addUniqueObject(notificationKey, forKey: channelsKey)
+        installation?.saveInBackground(block: { (success, error) in
+            if error != nil || !success {
+                installation?.saveEventually()
+            }
+        })
+    }
+    
+    func disableNotification(_ installation: PFInstallation? = PFInstallation.current()) {
+        installation?.remove(notificationKey, forKey: channelsKey)
+        installation?.saveInBackground(block: { (success, error) in
+            if error != nil || !success {
+                installation?.saveEventually()
+            }
+        })
     }
 }

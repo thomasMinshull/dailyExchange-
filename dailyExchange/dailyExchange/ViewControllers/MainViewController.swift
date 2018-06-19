@@ -184,37 +184,22 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
 }
 
 extension MainViewController: ExchangeRateCellProtocol {
-    func notificationSwitchDidToggleFor(cell: ExchangeRateTableViewCell) {
+    func notificationSwitchDidToggleFor(cell: ExchangeRateTableViewCell, installation: PFInstallation? = PFInstallation.current()) {
+        
         if let indexPath = self.exchangeRatesTableView.indexPath(for: cell as UITableViewCell),
             indexPath.row >= 0 && indexPath.row < exchangeRates.count
         {
+            guard let installation = installation else {
+                print("Error PFInstallation.current() returned nil when notification toggled in MainViewController")
+                return
+            }
+
             let exchangeRate = exchangeRates[(indexPath.row)]
-            exchangeRate.notificationsEnabled = !exchangeRate.notificationsEnabled
-            exchangeRate.isSavedOnServer = false
             
-            exchangeRate.pinInBackground { (success, error) in
-                guard success else {
-                    if let error = error {
-                        print("Exchange Rate: \(exchangeRate) notificationEnabled status toogled, but not saved to save locally do to error; \(error)")
-                    }
-                    // if failed to pin to background we want to toggle back and update UI
-                    exchangeRate.notificationsEnabled = !exchangeRate.notificationsEnabled
-                    DispatchQueue.main.async {
-                        self.exchangeRatesTableView.reloadRows(at: [indexPath], with: .automatic)                        
-                    }
-                    return
-                }
-                
-                if success {
-                    exchangeRate.saveEventually({(success, error) in
-                        if success {
-                            exchangeRate.isSavedOnServer = true
-                            exchangeRate.pinInBackground()
-                        } else {
-                            print("Exchange Rate: \(exchangeRate) notificationEnabled status toogled, but not saved to server do to error: \(error!)")
-                        }
-                    })
-                }
+            if exchangeRate.isNotificationEnabled() {
+                exchangeRate.disableNotification(installation)
+            } else {
+                exchangeRate.enableNotification(installation)
             }
         }
     }
